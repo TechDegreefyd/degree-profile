@@ -147,22 +147,14 @@ const LogoutIcon = () => (
 
 const BrandLogo = () => (
   <div className={styles.logoIcon}>
-    <svg width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Dynamic Swoosh Orange/Yellow (left curves) */}
-      <path d="M20 75 C 10 50, 35 25, 60 25 C 75 25, 90 35, 95 45" stroke="#f38612" strokeWidth="8" strokeLinecap="round" fill="none" />
-      {/* Dynamic Swoosh Blue (bottom right curves) */}
-      <path d="M45 95 C 75 95, 105 80, 105 50 C 105 40, 95 30, 85 28" stroke="#0b3a60" strokeWidth="8" strokeLinecap="round" fill="none" />
-      {/* Tilted graduation cap diamond */}
-      <polygon points="65,35 90,47 65,59 40,47" fill="#0b3a60" />
-      {/* Graduation cap base */}
-      <path d="M50,52 L50,60 C50,60 65,68 80,60 L80,52" fill="#0b3a60" />
-      {/* Orange Tassel */}
-      <path d="M90 47 L90 68" stroke="#f38612" strokeWidth="3" strokeLinecap="round" fill="none" />
-      <circle cx="90" cy="68" r="3.5" fill="#f38612" />
-    </svg>
-    <span>
-      Degree<span className={styles.logoFyd}>FYD</span>
-    </span>
+    <Image 
+      src="/logo.png" 
+      alt="DegreeFYD Logo" 
+      width={140} 
+      height={35} 
+      priority
+      style={{ objectFit: "contain" }}
+    />
   </div>
 );
 
