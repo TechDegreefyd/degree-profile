@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import Popup from "./Popup";
 
 // --- Inline SVG Icons for Visual Elegance and Zero External Dependencies ---
 
@@ -158,6 +162,17 @@ const BrandLogo = () => (
 );
 
 export default function Home() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [profile, setProfile] = useState({
+    id: "user-123",
+    fullName: "Kartikay Sharma",
+    parentPhone: "9306508269",
+    secondaryEmail: "ani141sh@gmail.com",
+    currentState: "Haryana",
+    currentCity: "Jind",
+    whatsapp: "---",
+  });
+
   return (
     <div className="flex flex-col min-h-screen bg-bg-page font-body">
       <div className="hidden lg:flex justify-between items-center py-2 px-[10%] bg-white border-b border-border text-[13px] text-text-body">
@@ -211,7 +226,7 @@ export default function Home() {
           </button>
           <button className="flex items-center gap-2 bg-[#f3f6f9] border border-border py-2 px-4 rounded-lg text-text-dark font-medium text-sm transition-all hover:bg-[#e2e8f0]">
             <UserIcon />
-            <span>Kartikay</span>
+            <span>{profile.fullName ? profile.fullName.split(" ")[0] : ""}</span>
           </button>
         </div>
       </header>
@@ -302,13 +317,13 @@ export default function Home() {
                   <circle cx="50" cy="50" r="44" stroke="#10b981" strokeWidth="4" fill="transparent" strokeDasharray="276.4" strokeDashoffset="96.7" strokeLinecap="round" />
                 </svg>
                 <div className="w-full h-full rounded-full overflow-hidden bg-slate-100 border-[3px] border-transparent flex items-center justify-center">
-                  {/* Shows placeholder 'K' */}
-                  <div className="w-full h-full flex items-center justify-center bg-slate-300 text-white font-semibold text-2xl lg:text-[32px] font-title">K</div>
+                  {/* Shows placeholder of first initial */}
+                  <div className="w-full h-full flex items-center justify-center bg-slate-300 text-white font-semibold text-2xl lg:text-[32px] font-title">{profile.fullName ? profile.fullName.charAt(0).toUpperCase() : ""}</div>
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <h2 className="text-lg lg:text-xl font-bold text-text-dark font-title">Kartikay Sharma</h2>
-                <p className="text-sm text-text-light">example@gmail.com</p>
+                <h2 className="text-lg lg:text-xl font-bold text-text-dark font-title">{profile.fullName}</h2>
+                <p className="text-sm text-text-light">{profile.secondaryEmail}</p>
               </div>
             </div>
             <button className="hidden lg:block border border-primary text-primary font-semibold text-sm py-2.5 px-5 rounded-lg bg-transparent transition-all hover:bg-primary hover:text-white hover:shadow-[0_4px_12px_rgba(11,58,96,0.15)]">
@@ -320,34 +335,37 @@ export default function Home() {
           <div className="bg-white border border-border rounded-xl p-5 lg:p-7 shadow-premium transition-all hover:border-slate-300 hover:shadow-premiumHover">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-bold text-text-dark font-title">General Details</h3>
-              <button className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-text-dark bg-transparent transition-all hover:border-primary hover:bg-primary-light hover:text-primary hover:rotate-12">
+              <button 
+                onClick={() => setIsPopupOpen(true)}
+                className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-text-dark bg-transparent transition-all hover:border-primary hover:bg-primary-light hover:text-primary hover:rotate-12"
+              >
                 <EditIcon />
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-6">
               <div className="flex flex-col gap-1.5">
                 <span className="text-[13px] font-medium text-text-light">Full Name</span>
-                <span className="text-sm font-semibold text-text-dark break-words">Kartikay Sharma</span>
+                <span className="text-sm font-semibold text-text-dark break-words">{profile.fullName}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <span className="text-[13px] font-medium text-text-light">Parent's Phone</span>
-                <span className="text-sm font-semibold text-text-dark break-words">9306508269</span>
+                <span className="text-sm font-semibold text-text-dark break-words">{profile.parentPhone}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <span className="text-[13px] font-medium text-text-light">Secondary Email</span>
-                <span className="text-sm font-semibold text-text-dark break-words">ani141sh@gmail.com</span>
+                <span className="text-sm font-semibold text-text-dark break-words">{profile.secondaryEmail}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <span className="text-[13px] font-medium text-text-light">Current State</span>
-                <span className="text-sm font-semibold text-text-dark break-words">Haryana</span>
+                <span className="text-sm font-semibold text-text-dark break-words">{profile.currentState}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <span className="text-[13px] font-medium text-text-light">Current City</span>
-                <span className="text-sm font-semibold text-text-dark break-words">Jind</span>
+                <span className="text-sm font-semibold text-text-dark break-words">{profile.currentCity}</span>
               </div>
               <div className="flex flex-col gap-1.5">
                 <span className="text-[13px] font-medium text-text-light">WhatsApp</span>
-                <span className="text-sm font-semibold text-text-dark break-words">---</span>
+                <span className="text-sm font-semibold text-text-dark break-words">{profile.whatsapp}</span>
               </div>
             </div>
           </div>
@@ -444,6 +462,12 @@ export default function Home() {
       <footer className="bg-primary text-white text-center py-4 px-5 text-[13px] font-normal border-t border-primary-dark mt-auto">
         <p>© 2026 Nuvora Education Private Limited. All rights reserved.</p>
       </footer>
+      <Popup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+        profile={profile}
+        onSubmit={(updatedData) => setProfile(p => ({ ...p, ...updatedData }))}
+      />
     </div>
   );
 }
