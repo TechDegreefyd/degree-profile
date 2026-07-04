@@ -275,12 +275,12 @@ export default function Home() {
               </div>
               <span>Shortlists</span>
             </div>
-            <div className="flex items-center gap-3 py-3 px-4 rounded-lg text-text-body font-medium text-[15px] cursor-pointer transition-all hover:bg-slate-50 hover:text-text-dark group">
+            <Link href="/talk-to-counselor" className="flex items-center gap-3 py-3 px-4 rounded-lg text-text-body font-medium text-[15px] cursor-pointer transition-all hover:bg-slate-50 hover:text-text-dark group">
               <div className="flex items-center justify-center text-lg text-text-light group-hover:text-text-dark transition-colors">
                 <CounselorIcon />
               </div>
               <span>Talk to counselor</span>
-            </div>
+            </Link>
             <div className="flex items-center gap-3 py-3 px-4 rounded-lg text-text-body font-medium text-[15px] cursor-pointer transition-all hover:bg-slate-50 hover:text-text-dark group">
               <div className="flex items-center justify-center text-lg text-text-light group-hover:text-text-dark transition-colors">
                 <DocumentsIcon />

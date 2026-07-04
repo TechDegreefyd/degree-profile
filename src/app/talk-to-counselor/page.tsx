@@ -79,10 +79,15 @@ const HamburgerIcon = () => (
   </svg>
 );
 
-const PinIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-    <circle cx="12" cy="10" r="3" />
+const StarIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="#eab308" stroke="#eab308" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+);
+
+const VerifiedIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="#22c55e" className="inline text-white">
+    <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
   </svg>
 );
 
@@ -158,110 +163,29 @@ const BrandLogo = () => (
   </div>
 );
 
-// --- University SVG Logos (Crests) for Zero Dependency Premium Graphics ---
-
-const AlagappaLogo = () => (
-  <div className="w-14 h-14 relative overflow-hidden rounded-md border border-slate-100 flex items-center justify-center bg-white">
-    <Image 
-      src="/alagappa_logo.png" 
-      alt="Alagappa University Logo" 
-      fill
-      style={{ objectFit: "contain" }}
-    />
-  </div>
-);
-
-const AmityLogo = () => (
-  <div className="w-14 h-14 relative overflow-hidden rounded-md border border-slate-100 flex items-center justify-center bg-white">
-    <Image 
-      src="/amity_logo.jpg" 
-      alt="Amity University Online Logo" 
-      fill
-      style={{ objectFit: "contain" }}
-    />
-  </div>
-);
-
-const GlaLogo = () => (
-  <div className="w-14 h-14 relative overflow-hidden rounded-md border border-slate-100 flex items-center justify-center bg-white">
-    <Image 
-      src="/gla_logo.jpg" 
-      alt="GLA University Online Logo" 
-      fill
-      style={{ objectFit: "contain" }}
-    />
-  </div>
-);
-
-const LpuLogo = () => (
-  <div className="w-14 h-14 relative overflow-hidden rounded-md border border-slate-100 flex items-center justify-center bg-white">
-    <Image 
-      src="/lpu_logo.png" 
-      alt="LPU Online Logo" 
-      fill
-      style={{ objectFit: "contain" }}
-    />
-  </div>
-);
-
-const ShardaLogo = () => (
-  <div className="w-14 h-14 relative overflow-hidden rounded-md border border-slate-100 flex items-center justify-center bg-white">
-    <Image 
-      src="/sharda_logo.png" 
-      alt="Sharda University Online Logo" 
-      fill
-      style={{ objectFit: "contain" }}
-    />
-  </div>
-);
-
-interface College {
+interface Counselor {
   id: string;
   name: string;
-  nirfRank: string;
-  location: string;
-  logoComponent: React.ComponentType;
+  languages: string;
+  experience: number;
+  rating: number;
+  avatarColor: string;
 }
 
-const RECOMMENDATIONS_DATA: College[] = [
-  {
-    id: "college-1",
-    name: "Alagappa University",
-    nirfRank: "#134 NIRF Rank",
-    location: "Hyderabad",
-    logoComponent: AlagappaLogo,
-  },
-  {
-    id: "college-2",
-    name: "Amity University Online",
-    nirfRank: "#4 NIRF Rank",
-    location: "Noida, Uttar Prade...",
-    logoComponent: AmityLogo,
-  },
-  {
-    id: "college-3",
-    name: "GLA University Online",
-    nirfRank: "#13 NIRF Rank",
-    location: "Mathura, Uttar Pra...",
-    logoComponent: GlaLogo,
-  },
-  {
-    id: "college-4",
-    name: "LPU Online",
-    nirfRank: "#1 NIRF Rank",
-    location: "Phagwada, Punjab",
-    logoComponent: LpuLogo,
-  },
-  {
-    id: "college-5",
-    name: "Sharda University Online",
-    nirfRank: "#21 NIRF Rank",
-    location: "Greater Noida, Utt...",
-    logoComponent: ShardaLogo,
-  },
+const COUNSELORS_DATA: Counselor[] = [
+  { id: "c-1", name: "Neha Sharma", languages: "Hindi & English", experience: 6, rating: 4.8, avatarColor: "bg-[#e0f2fe] text-[#0369a1]" },
+  { id: "c-2", name: "Amit Verma", languages: "Hindi Only", experience: 5, rating: 4.7, avatarColor: "bg-[#fef3c7] text-[#b45309]" },
+  { id: "c-3", name: "Priyanka Gupta", languages: "Hindi & English", experience: 8, rating: 4.9, avatarColor: "bg-[#dcfce7] text-[#15803d]" },
+  { id: "c-4", name: "Rajesh Kumar", languages: "Hindi Only", experience: 4, rating: 4.5, avatarColor: "bg-[#f3e8ff] text-[#6b21a8]" },
+  { id: "c-5", name: "Shweta Mishra", languages: "Hindi & English", experience: 7, rating: 4.8, avatarColor: "bg-[#ffe4e6] text-[#be123c]" },
+  { id: "c-6", name: "Vikram Singh", languages: "Hindi Only", experience: 6, rating: 4.6, avatarColor: "bg-[#ccfbf1] text-[#0f766e]" },
+  { id: "c-7", name: "Pooja Joshi", languages: "Hindi & English", experience: 9, rating: 5.0, avatarColor: "bg-[#e0e7ff] text-[#4338ca]" },
+  { id: "c-8", name: "Anil Saxena", languages: "Hindi Only", experience: 3, rating: 4.4, avatarColor: "bg-[#ffedd5] text-[#c2410c]" },
+  { id: "c-9", name: "Kiran Yadav", languages: "Hindi & English", experience: 5, rating: 4.7, avatarColor: "bg-[#f1f5f9] text-[#334155]" },
+  { id: "c-10", name: "Sanjay Dutt", languages: "Hindi & English", experience: 10, rating: 4.9, avatarColor: "bg-[#fae8ff] text-[#86198f]" },
 ];
 
-export default function Recommendations() {
+export default function TalkToCounselor() {
   return (
     <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
       {/* ==========================================================================
@@ -360,8 +284,8 @@ export default function Recommendations() {
               </div>
               <span>Profile details</span>
             </Link>
-            <Link href="/recommendations" className="flex items-center gap-3 py-3 px-4 rounded-lg text-primary bg-primary-light font-medium text-[15px] cursor-pointer transition-all">
-              <div className="flex items-center justify-center text-lg text-primary">
+            <Link href="/recommendations" className="flex items-center gap-3 py-3 px-4 rounded-lg text-text-body font-medium text-[15px] cursor-pointer transition-all hover:bg-slate-50 hover:text-text-dark group">
+              <div className="flex items-center justify-center text-lg text-text-light group-hover:text-text-dark transition-colors">
                 <RecommendationsIcon />
               </div>
               <span>Recommendations</span>
@@ -372,8 +296,8 @@ export default function Recommendations() {
               </div>
               <span>Shortlists</span>
             </div>
-            <Link href="/talk-to-counselor" className="flex items-center gap-3 py-3 px-4 rounded-lg text-text-body font-medium text-[15px] cursor-pointer transition-all hover:bg-slate-50 hover:text-text-dark group">
-              <div className="flex items-center justify-center text-lg text-text-light group-hover:text-text-dark transition-colors">
+            <Link href="/talk-to-counselor" className="flex items-center gap-3 py-3 px-4 rounded-lg text-primary bg-primary-light font-medium text-[15px] cursor-pointer transition-all">
+              <div className="flex items-center justify-center text-lg text-primary">
                 <CounselorIcon />
               </div>
               <span>Talk to counselor</span>
@@ -400,62 +324,52 @@ export default function Recommendations() {
           </div>
         </aside>
 
-        {/* Right Content Panel - Recommended Colleges */}
+        {/* Right Content Panel - Book Free Session */}
         <section className="flex-1 flex flex-col gap-6">
-          <h1 className="text-2xl font-bold text-text-dark font-title mb-2 mt-2">Recommended colleges</h1>
+          <h1 className="text-2xl font-bold text-text-dark font-title mb-2 mt-2">
+            Book free session with our experts
+          </h1>
 
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {RECOMMENDATIONS_DATA.map((college) => {
-              const Logo = college.logoComponent;
-              return (
-                <div 
-                  key={college.id} 
-                  className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-4 w-full sm:w-[327px] h-[187px] hover:border-slate-400 transition-all flex flex-col items-start justify-between gap-3"
-                >
-                  <div className="w-full">
-                    {/* Top Row: Logo & Rank Badge / Location */}
-                    <div className="flex items-start justify-between w-full">
-                      <div className="w-14 h-14 flex-shrink-0">
-                        <Logo />
-                      </div>
-                      <div className="flex flex-col items-end gap-1.5">
-                        {/* Rank Badge */}
-                        <span className="bg-[#e6fcf5] text-green-600 text-[11px] font-bold py-1 px-2.5 rounded-full border border-green-100">
-                          {college.nirfRank}
-                        </span>
-                        {/* Location */}
-                        <div className="flex items-center gap-1 text-[13px] text-text-light">
-                          <span className="text-slate-400"><PinIcon /></span>
-                          <span className="truncate max-w-[130px]">{college.location}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* College Name */}
-                    <h3 className="text-[15px] font-bold text-text-dark font-title leading-snug line-clamp-1 mt-3">
-                      {college.name}
-                    </h3>
-                  </div>
-
-                  {/* Input Search Degree */}
-                  <div className="w-full relative">
-                    <input 
-                      type="text" 
-                      placeholder="Search degree"
-                      className="w-full border border-[#cbd5e1] rounded-lg py-1.5 px-3.5 text-sm text-text-dark focus:outline-none focus:border-primary placeholder-slate-400 transition-colors"
-                    />
-                  </div>
+          {/* Cards Grid: 5 columns on desktop */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+            {COUNSELORS_DATA.map((counselor) => (
+              <div 
+                key={counselor.id}
+                className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-3 w-full sm:w-[189.8px] h-fit hover:border-slate-400 transition-all flex flex-col items-center gap-3 flex-shrink-0"
+              >
+                {/* Circular Profile Photo Centered */}
+                <div className={`w-16 h-16 rounded-full ${counselor.avatarColor} flex items-center justify-center font-bold text-xl shadow-inner`}>
+                  {counselor.name.split(" ").map(n => n[0]).join("")}
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Explore all colleges button */}
-          <div className="flex justify-center pt-6">
-            <button className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 px-8 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
-              Explore all colleges
-            </button>
+                {/* Name and Verified Check */}
+                <div className="flex items-center justify-center gap-1.5 text-center">
+                  <span className="text-sm font-bold text-text-dark font-title truncate max-w-[130px]">
+                    {counselor.name}
+                  </span>
+                  <VerifiedIcon />
+                </div>
+
+                {/* Subtext: Languages */}
+                <p className="text-xs text-text-light text-center leading-snug">
+                  Speaks {counselor.languages}
+                </p>
+
+                {/* Stats Row */}
+                <div className="flex items-center justify-between w-full text-[11px] font-medium text-text-body border-t border-slate-100 pt-2.5">
+                  <span>{counselor.experience} yrs Exp</span>
+                  <span className="flex items-center gap-1">
+                    <StarIcon />
+                    <span>{counselor.rating.toFixed(1)} Ratings</span>
+                  </span>
+                </div>
+
+                {/* Book Free Session Button */}
+                <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold text-xs py-2.5 px-2 rounded-lg transition-colors mt-auto">
+                  Book Free Session
+                </button>
+              </div>
+            ))}
           </div>
         </section>
       </main>
