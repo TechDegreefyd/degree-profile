@@ -167,22 +167,92 @@ interface Counselor {
   id: string;
   name: string;
   languages: string;
-  experience: number;
-  rating: number;
-  avatarColor: string;
+  experienceText: string;
+  ratingText: string;
+  imageUrl: string;
 }
 
 const COUNSELORS_DATA: Counselor[] = [
-  { id: "c-1", name: "Neha Sharma", languages: "Hindi & English", experience: 6, rating: 4.8, avatarColor: "bg-[#e0f2fe] text-[#0369a1]" },
-  { id: "c-2", name: "Amit Verma", languages: "Hindi Only", experience: 5, rating: 4.7, avatarColor: "bg-[#fef3c7] text-[#b45309]" },
-  { id: "c-3", name: "Priyanka Gupta", languages: "Hindi & English", experience: 8, rating: 4.9, avatarColor: "bg-[#dcfce7] text-[#15803d]" },
-  { id: "c-4", name: "Rajesh Kumar", languages: "Hindi Only", experience: 4, rating: 4.5, avatarColor: "bg-[#f3e8ff] text-[#6b21a8]" },
-  { id: "c-5", name: "Shweta Mishra", languages: "Hindi & English", experience: 7, rating: 4.8, avatarColor: "bg-[#ffe4e6] text-[#be123c]" },
-  { id: "c-6", name: "Vikram Singh", languages: "Hindi Only", experience: 6, rating: 4.6, avatarColor: "bg-[#ccfbf1] text-[#0f766e]" },
-  { id: "c-7", name: "Pooja Joshi", languages: "Hindi & English", experience: 9, rating: 5.0, avatarColor: "bg-[#e0e7ff] text-[#4338ca]" },
-  { id: "c-8", name: "Anil Saxena", languages: "Hindi Only", experience: 3, rating: 4.4, avatarColor: "bg-[#ffedd5] text-[#c2410c]" },
-  { id: "c-9", name: "Kiran Yadav", languages: "Hindi & English", experience: 5, rating: 4.7, avatarColor: "bg-[#f1f5f9] text-[#334155]" },
-  { id: "c-10", name: "Sanjay Dutt", languages: "Hindi & English", experience: 10, rating: 4.9, avatarColor: "bg-[#fae8ff] text-[#86198f]" },
+  { 
+    id: "c-1", 
+    name: "Harsh Pandey", 
+    languages: "Hindi Only", 
+    experienceText: "0 years", 
+    ratingText: "0.5", 
+    imageUrl: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-2", 
+    name: "Varun Sharma", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-3", 
+    name: "Sumit Saroha", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-4", 
+    name: "Rupal Singh", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-5", 
+    name: "Prashant Kishor", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-6", 
+    name: "Prashant Kishor", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-7", 
+    name: "Vikash Dagar", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-8", 
+    name: "Vikash Dagar", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-9", 
+    name: "Vikash Dagar", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
+  { 
+    id: "c-10", 
+    name: "Vikash Dagar", 
+    languages: "Hindi & english", 
+    experienceText: "5+ years", 
+    ratingText: "4.5", 
+    imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&h=150&q=80" 
+  },
 ];
 
 export default function TalkToCounselor() {
@@ -338,8 +408,12 @@ export default function TalkToCounselor() {
                 className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-3 w-full sm:w-[189.8px] h-fit hover:border-slate-400 transition-all flex flex-col items-center gap-3 flex-shrink-0"
               >
                 {/* Circular Profile Photo Centered */}
-                <div className={`w-16 h-16 rounded-full ${counselor.avatarColor} flex items-center justify-center font-bold text-xl shadow-inner`}>
-                  {counselor.name.split(" ").map(n => n[0]).join("")}
+                <div className="w-16 h-16 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center flex-shrink-0 shadow-inner bg-slate-100 relative">
+                  <img 
+                    src={counselor.imageUrl} 
+                    alt={counselor.name} 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
 
                 {/* Name and Verified Check */}
@@ -356,12 +430,19 @@ export default function TalkToCounselor() {
                 </p>
 
                 {/* Stats Row */}
-                <div className="flex items-center justify-between w-full text-[11px] font-medium text-text-body border-t border-slate-100 pt-2.5">
-                  <span>{counselor.experience} yrs Exp</span>
-                  <span className="flex items-center gap-1">
-                    <StarIcon />
-                    <span>{counselor.rating.toFixed(1)} Ratings</span>
-                  </span>
+                <div className="flex items-center w-full border-t border-slate-100 pt-2.5 text-center">
+                  <div className="flex-1 flex flex-col items-center">
+                    <span className="text-[11px] font-bold text-text-dark">{counselor.experienceText}</span>
+                    <span className="text-[10px] text-text-light">Experience</span>
+                  </div>
+                  <div className="w-px h-6 bg-slate-200" />
+                  <div className="flex-1 flex flex-col items-center">
+                    <span className="text-[11px] font-bold text-text-dark flex items-center gap-0.5 justify-center">
+                      <StarIcon />
+                      <span>{counselor.ratingText}</span>
+                    </span>
+                    <span className="text-[10px] text-text-light">Ratings</span>
+                  </div>
                 </div>
 
                 {/* Book Free Session Button */}
