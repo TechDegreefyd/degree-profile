@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import BookSessionModal from "../components/BookSessionModal";
 import SuccessPopup from "../components/SuccessPopup";
-import { StarIcon, VerifiedIcon } from "../components/Icons";
+import { StarIcon, VerifiedIcon, CalendarIcon } from "../components/Icons";
 
 interface Counselor {
   id: string;
@@ -107,6 +107,16 @@ export default function TalkToCounselor() {
   const [selectedCounselor, setSelectedCounselor] = useState<Counselor | null>(null);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [successDetails, setSuccessDetails] = useState({ title: "", description: "" });
+  const [activeDot, setActiveDot] = useState(0);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = e.currentTarget.scrollLeft;
+    const cardWidth = 280; // card w-[260px] + gap [20px]
+    const index = Math.round(scrollLeft / cardWidth);
+    if (index >= 0 && index < COUNSELORS_DATA.length) {
+      setActiveDot(index);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
@@ -116,17 +126,25 @@ export default function TalkToCounselor() {
         <Sidebar />
 
         {/* Right Content Panel - Book Free Session */}
-        <section className="flex-1 flex flex-col gap-6">
-          <h1 className="text-2xl font-bold text-text-dark font-title mb-2 mt-2">
-            Book free session with our experts
-          </h1>
+        <section className="flex-1 flex flex-col gap-6 overflow-hidden">
+          <div className="flex flex-col gap-2">
+            <h1 className="text-2xl font-bold text-text-dark font-title mt-2">
+              Book free session with our experts
+            </h1>
+            <p className="text-[13px] text-text-light leading-relaxed max-w-xl">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            </p>
+          </div>
 
-          {/* Cards Grid: 5 columns on desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+          {/* Cards Container: horizontal scroll on mobile, grid on desktop */}
+          <div 
+            onScroll={handleScroll}
+            className="flex lg:grid lg:grid-cols-4 xl:grid-cols-5 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory gap-5 w-full no-scrollbar pb-4 scroll-smooth"
+          >
             {COUNSELORS_DATA.map((counselor) => (
               <div 
                 key={counselor.id}
-                className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-3 w-full sm:w-[189.8px] h-fit hover:border-slate-400 transition-all flex flex-col items-center gap-3 flex-shrink-0"
+                className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-3 w-[260px] sm:w-[189.8px] lg:w-full h-fit hover:border-slate-400 transition-all flex flex-col items-center gap-3 flex-shrink-0 snap-center"
               >
                 {/* Circular Profile Photo Centered */}
                 <div className="w-16 h-16 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center flex-shrink-0 shadow-inner bg-slate-100 relative">
@@ -172,11 +190,24 @@ export default function TalkToCounselor() {
                     setSelectedCounselor(counselor);
                     setIsModalOpen(true);
                   }}
-                  className="w-full bg-primary hover:bg-primary-dark text-white font-bold text-xs py-2.5 px-2 rounded-lg transition-colors mt-auto"
+                  className="w-full bg-primary hover:bg-primary-dark text-white font-bold text-xs py-2.5 px-2 rounded-lg transition-colors mt-auto flex items-center justify-center gap-1"
                 >
-                  Book Free Session
+                  <CalendarIcon />
+                  <span>Book a Free Session</span>
                 </button>
               </div>
+            ))}
+          </div>
+
+          {/* Mobile pagination dots */}
+          <div className="flex lg:hidden justify-center gap-1.5 mt-2 w-full">
+            {COUNSELORS_DATA.map((_, i) => (
+              <div 
+                key={i}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  activeDot === i ? "bg-[#0b3a60]" : "bg-slate-300"
+                }`}
+              />
             ))}
           </div>
         </section>

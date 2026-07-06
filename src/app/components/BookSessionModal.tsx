@@ -79,7 +79,7 @@ export default function BookSessionModal({ isOpen, onClose, counselor, onBooking
           </h2>
           <button 
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-600 transition-colors"
+            className="text-slate-400 hover:text-slate-600 transition-colors border border-slate-200 rounded-md p-1 hover:bg-slate-50 flex items-center justify-center"
             aria-label="Close modal"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -93,33 +93,40 @@ export default function BookSessionModal({ isOpen, onClose, counselor, onBooking
         <div className="flex flex-col md:flex-row gap-8">
           
           {/* Left Column (Fixed Width & Rounded) */}
-          <div className="w-full md:w-[260px] bg-[#f0f4f8] rounded-xl p-6 flex flex-col items-center gap-4 flex-shrink-0">
-            {/* Circular Photo */}
-            <div className="w-24 h-24 rounded-full overflow-hidden border border-white flex items-center justify-center shadow-md bg-slate-100 relative">
-              <img 
-                src={counselor.imageUrl} 
-                alt={counselor.name} 
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="w-full md:w-[260px] bg-[#f0f4f8] rounded-xl p-4 md:p-6 flex flex-col gap-4 flex-shrink-0">
+            
+            {/* Counselor Detail Card (Row on mobile, Column on desktop) */}
+            <div className="flex flex-row md:flex-col items-center md:items-center gap-4 w-full">
+              {/* Circular Photo */}
+              <div className="w-16 h-16 md:w-24 md:h-24 rounded-full overflow-hidden border border-white flex items-center justify-center shadow-md bg-slate-100 relative flex-shrink-0">
+                <img 
+                  src={counselor.imageUrl} 
+                  alt={counselor.name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-            {/* Name */}
-            <h3 className="text-[17px] font-bold text-text-dark font-title text-center leading-snug">
-              {counselor.name}
-            </h3>
+              {/* Text Info */}
+              <div className="flex flex-col items-start md:items-center gap-0.5 md:gap-1.5 flex-1">
+                {/* Name */}
+                <h3 className="text-[15px] md:text-[17px] font-bold text-text-dark font-title text-left md:text-center leading-snug">
+                  {counselor.name}
+                </h3>
 
-            {/* Experience */}
-            <p className="text-sm font-medium text-text-light text-center">
-              {counselor.experienceText}+ Experience
-            </p>
+                {/* Experience */}
+                <p className="text-xs md:text-sm font-medium text-text-light text-left md:text-center">
+                  {counselor.experienceText}+ Experience
+                </p>
 
-            {/* Gold Stars Rating Row */}
-            <div className="flex items-center justify-center gap-0.5 text-center">
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
+                {/* Gold Stars Rating Row */}
+                <div className="flex items-center justify-start md:justify-center gap-0.5">
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                </div>
+              </div>
             </div>
 
             {/* Whatsapp & Call Buttons */}
