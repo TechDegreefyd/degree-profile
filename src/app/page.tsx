@@ -11,11 +11,11 @@ export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [profile, setProfile] = useState({
     id: "user-123",
-    fullName: "Kartikay Sharma",
+    fullName: "aditya Shah",
     parentPhone: "9306508269",
-    secondaryEmail: "ani141sh@gmail.com",
-    currentState: "Haryana",
-    currentCity: "Jind",
+    secondaryEmail: "adishah@gmail.com",
+    currentState: "Darjeeling",
+    currentCity: "Gurugram",
     whatsapp: "---",
   });
 

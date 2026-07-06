@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
@@ -101,6 +102,7 @@ const COUNSELORS_DATA: Counselor[] = [
 ];
 
 export default function TalkToCounselor() {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCounselor, setSelectedCounselor] = useState<Counselor | null>(null);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
@@ -195,7 +197,10 @@ export default function TalkToCounselor() {
       />
       <SuccessPopup 
         isOpen={isSuccessOpen}
-        onClose={() => setIsSuccessOpen(false)}
+        onClose={() => {
+          setIsSuccessOpen(false);
+          router.push("/session-booked");
+        }}
         title={successDetails.title}
         description={successDetails.description}
       />

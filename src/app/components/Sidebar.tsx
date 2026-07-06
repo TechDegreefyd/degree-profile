@@ -18,7 +18,7 @@ export default function Sidebar() {
 
   const isProfileActive = pathname === "/";
   const isRecommendationsActive = pathname === "/recommendations";
-  const isCounselorActive = pathname === "/talk-to-counselor";
+  const isCounselorActive = pathname === "/talk-to-counselor" || pathname === "/session-booked";
 
   return (
     <aside className="hidden lg:flex flex-col w-[220px] bg-white border border-border rounded-xl p-4 h-fit shadow-premium flex-shrink-0">
