@@ -135,10 +135,10 @@ export default function BookSessionModal({ isOpen, onClose, counselor, onBooking
                 href="https://wa.me/919306508369"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center border border-green-500 rounded-full py-2 px-3 text-[11px] font-bold text-green-600 bg-white hover:bg-green-50 transition-colors"
+                className="flex items-center justify-center border border-[#007B2D] rounded-[8px] py-2 px-3 text-[11px] font-bold text-[#007B2D] bg-white hover:bg-green-50/30 transition-colors"
               >
-                <WhatsappIcon />
-                <span>Whatsapp</span>
+                <img src="/whatsapp_icon.png" alt="WhatsApp" className="w-3.5 h-3.5 object-contain inline mr-1" />
+                <span>WhatsApp</span>
               </a>
               <a 
                 href="tel:9306508369"

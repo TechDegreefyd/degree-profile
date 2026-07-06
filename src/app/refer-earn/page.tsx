@@ -100,9 +100,9 @@ export default function ReferEarn() {
                 href={`https://api.whatsapp.com/send?text=${encodeURIComponent("Join Degreefyd using my link: " + referralLink)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 border border-green-500 rounded-lg py-2 px-5 text-xs sm:text-sm font-semibold text-green-600 bg-white hover:bg-green-50 transition-colors cursor-pointer"
+                className="flex items-center justify-center gap-2 border border-[#007B2D] rounded-[8px] py-2 px-5 text-xs sm:text-sm font-bold text-[#007B2D] bg-white hover:bg-green-50/30 transition-colors cursor-pointer"
               >
-                <WhatsappIconLocal />
+                <img src="/whatsapp_icon.png" alt="WhatsApp" className="w-4 h-4 object-contain inline" />
                 <span>WhatsApp</span>
               </a>
 
