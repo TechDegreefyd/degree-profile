@@ -19,6 +19,7 @@ export default function Sidebar() {
   const isProfileActive = pathname === "/";
   const isRecommendationsActive = pathname === "/recommendations";
   const isCounselorActive = pathname === "/talk-to-counselor" || pathname === "/session-booked";
+  const isShortlistsActive = pathname === "/shortlists";
 
   return (
     <aside className="hidden lg:flex flex-col w-[220px] bg-white border border-border rounded-xl p-4 h-fit shadow-premium flex-shrink-0">
@@ -57,13 +58,22 @@ export default function Sidebar() {
           <span>Recommendations</span>
         </Link>
 
-        {/* Shortlists link (static) */}
-        <div className="flex items-center gap-3 py-3 px-4 rounded-lg text-text-body font-medium text-[15px] cursor-pointer transition-all hover:bg-slate-50 hover:text-text-dark group">
-          <div className="flex items-center justify-center text-lg text-text-light group-hover:text-text-dark transition-colors">
+        {/* Shortlists link */}
+        <Link 
+          href="/shortlists" 
+          className={`flex items-center gap-3 py-3 px-4 rounded-lg font-medium text-[15px] cursor-pointer transition-all ${
+            isShortlistsActive 
+              ? "text-primary bg-primary-light" 
+              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+          }`}
+        >
+          <div className={`flex items-center justify-center text-lg ${
+            isShortlistsActive ? "text-primary" : "text-text-light group-hover:text-text-dark transition-colors"
+          }`}>
             <ShortlistsIcon />
           </div>
           <span>Shortlists</span>
-        </div>
+        </Link>
 
         {/* Talk to Counselor link */}
         <Link 
