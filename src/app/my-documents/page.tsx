@@ -68,7 +68,7 @@ export default function MyDocuments() {
           </h1>
 
           {/* Documents Grid / Row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full xl:w-[1013px]">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 w-full xl:w-[1013px]">
             {documents.map((doc) => {
               const isUploaded = doc.state === "validated" || doc.state === "pending";
               const isUploading = doc.state === "uploading";
@@ -111,7 +111,7 @@ export default function MyDocuments() {
                       </button>
                     ) : (
                       <span className="w-full text-center bg-[#FFF5EC] text-[#E05A10] text-xs sm:text-[13px] font-semibold py-2.5 px-3 rounded-[8px] truncate block">
-                        Validation in process...
+                        Validating doc...
                       </span>
                     )}
                   </div>
