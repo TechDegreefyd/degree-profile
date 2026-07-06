@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import LogoutModal from "./LogoutModal";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
@@ -14,6 +15,7 @@ import {
 } from "./Icons";
 
 export default function Sidebar() {
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const pathname = usePathname();
 
   const isProfileActive = pathname === "/";
@@ -129,12 +131,24 @@ export default function Sidebar() {
         </Link>
       </nav>
       <div className="h-px bg-border my-5" />
-      <div className="flex items-center gap-3 py-3 px-4 rounded-lg text-red-500 font-medium text-[15px] cursor-pointer transition-all hover:bg-red-50">
+      <div 
+        onClick={() => setIsLogoutOpen(true)}
+        className="flex items-center gap-3 py-3 px-4 rounded-lg text-red-500 font-medium text-[15px] cursor-pointer transition-all hover:bg-red-50"
+      >
         <div className="flex items-center justify-center text-lg text-red-500">
           <LogoutIcon />
         </div>
         <span>Log out</span>
       </div>
+
+      <LogoutModal 
+        isOpen={isLogoutOpen} 
+        onClose={() => setIsLogoutOpen(false)} 
+        onConfirm={() => {
+          alert("Logged out successfully!");
+          setIsLogoutOpen(false);
+        }}
+      />
     </aside>
   );
 }
