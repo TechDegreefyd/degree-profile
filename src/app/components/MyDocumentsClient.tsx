@@ -101,7 +101,7 @@ export default function MyDocumentsClient() {
                   </button>
                 ) : (
                   <span className="w-full text-center bg-[#FFF5EC] text-[#E05A10] text-xs sm:text-[13px] font-semibold py-2.5 px-3 rounded-[8px] truncate block">
-                    Validating doc...
+                    Validation in process...
                   </span>
                 )}
               </div>

@@ -52,19 +52,20 @@ export default function ReferEarnClient() {
         </span>
 
         {/* Link & share buttons block */}
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col md:flex-row gap-4 w-full items-stretch md:items-center">
           
           {/* Copyable Input Row */}
-          <div className="relative flex items-center w-full">
+          <div className="flex-1 flex items-center border border-[#CFD8DE] rounded-lg bg-[#fcfdfe] overflow-hidden focus-within:border-primary h-[44px]">
             <input 
               type="text" 
               readOnly 
               value={referralLink} 
-              className="w-full border border-slate-200 rounded-lg py-2.5 px-3.5 pr-12 text-xs sm:text-sm text-text-dark font-medium bg-[#fcfdfe] focus:outline-none"
+              className="flex-1 py-2.5 px-3.5 text-xs sm:text-sm text-text-dark font-medium bg-transparent focus:outline-none"
             />
+            <div className="w-px h-6 bg-[#CFD8DE] flex-shrink-0" />
             <button 
               onClick={handleCopy}
-              className="absolute right-3.5 text-slate-400 hover:text-primary transition-colors cursor-pointer flex items-center justify-center"
+              className="py-2.5 px-3.5 text-slate-400 hover:text-primary transition-colors cursor-pointer flex items-center justify-center flex-shrink-0"
               title="Copy Referral Link"
             >
               {copied ? (
@@ -78,14 +79,14 @@ export default function ReferEarnClient() {
             </button>
           </div>
 
-          {/* Share Buttons: 2 columns on mobile, flex row on desktop */}
-          <div className="grid grid-cols-2 md:flex gap-3 w-full">
+          {/* Share Buttons: inline side-by-side flex block */}
+          <div className="flex gap-3 flex-shrink-0">
             {/* Whatsapp Share button */}
             <a 
               href={`https://api.whatsapp.com/send?text=${encodeURIComponent("Join Degreefyd using my link: " + referralLink)}`}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center gap-2 border border-[#007B2D] rounded-[8px] py-2.5 px-4 text-xs sm:text-sm font-bold text-[#007B2D] bg-white hover:bg-green-50/30 transition-colors cursor-pointer w-full md:w-auto"
+              className="flex items-center justify-center gap-2 border border-[#007B2D] rounded-[8px] py-2 px-4 text-xs sm:text-sm font-bold text-[#007B2D] bg-white hover:bg-green-50/20 transition-colors cursor-pointer w-auto h-[44px]"
             >
               <img src="/whatsapp_icon.png" alt="WhatsApp" className="w-4 h-4 object-contain inline" />
               <span>WhatsApp</span>
@@ -94,7 +95,7 @@ export default function ReferEarnClient() {
             {/* Email Share button */}
             <a 
               href={`mailto:?subject=Join%20Degreefyd&body=${encodeURIComponent("Hey, join Degreefyd and discover the best online colleges! Here is my link: " + referralLink)}`}
-              className="flex items-center justify-center gap-2 border border-primary rounded-lg py-2.5 px-4 text-xs sm:text-sm font-semibold text-primary bg-white hover:bg-slate-50 transition-colors cursor-pointer w-full md:w-auto"
+              className="flex items-center justify-center gap-2 border border-[#0B3A60] rounded-[8px] py-2 px-4 text-xs sm:text-sm font-bold text-[#0B3A60] bg-white hover:bg-slate-50 transition-colors cursor-pointer w-auto h-[44px]"
             >
               <MailIconLocal />
               <span>Email</span>
