@@ -115,7 +115,7 @@ export const ShortlistsIcon = () => (
 );
 
 export const CounselorIcon = () => (
-  <img src="/sidebar_counselor.png" alt="Counselor" width="24" height="24" className="w-6 h-6 object-contain inline" />
+  <img src="/sidebar_counselor.png" alt="Counselor" width="22" height="22" className="w-[22px] h-[22px] object-contain inline" />
 );
 
 export const DocumentsIcon = () => (
