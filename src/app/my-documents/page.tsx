@@ -110,7 +110,7 @@ export default function MyDocuments() {
                         <span>Change</span>
                       </button>
                     ) : (
-                      <span className="w-full text-center bg-[#fffbeb] text-amber-600 text-[10px] sm:text-[11px] font-bold py-1.5 px-2 rounded-md border border-amber-100 truncate block">
+                      <span className="w-full text-center bg-[#FFF5EC] text-[#E05A10] text-xs sm:text-[13px] font-semibold py-2.5 px-3 rounded-[8px] truncate block">
                         Validation in process...
                       </span>
                     )}
