@@ -28,7 +28,7 @@ interface DocItem {
 export default function MyDocuments() {
   const [documents, setDocuments] = useState<DocItem[]>([
     { id: "doc-1", name: "Class 10 Marksheet", state: "validated", fileUrl: "/doc_preview.jpg" },
-    { id: "doc-2", name: "Class 12 Marksheet", state: "pending", fileUrl: "/doc_preview.jpg" },
+    { id: "doc-2", name: "Class 12 Marksheet", state: "pending", fileUrl: "/doc_preview.png" },
     { id: "doc-3", name: "Aadhar Card", state: "empty" },
     { id: "doc-4", name: "PAN Card", state: "empty" },
     { id: "doc-5", name: "CV", state: "empty" },
@@ -122,27 +122,25 @@ export default function MyDocuments() {
               return (
                 <div 
                   key={doc.id}
-                  className="border-2 border-dashed border-[#CFD8DE] rounded-[8px] p-4 bg-white h-[235px] flex flex-col items-center justify-between text-center gap-4 shadow-sm flex-1 hover:border-slate-400 transition-colors"
+                  className="border border-[#CFD8DE] rounded-[8px] p-4 bg-white h-[235px] flex flex-col items-start justify-between gap-4 shadow-sm flex-1"
                 >
-                  {/* Icon */}
-                  <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center mt-2 flex-shrink-0">
-                    <CloudUploadIcon />
-                  </div>
-
-                  {/* Label & helper texts */}
-                  <div className="flex flex-col gap-1 w-full">
-                    <span className="text-sm font-bold text-text-dark font-title line-clamp-1">
+                  {/* Dashed Inner Container */}
+                  <div className="w-full flex-1 border border-dashed border-[#CFD8DE] rounded-[8px] p-2 flex flex-col items-center justify-center text-center gap-1.5 bg-[#fafbfc]">
+                    <div className="flex items-center justify-center">
+                      <CloudUploadIcon />
+                    </div>
+                    <span className="text-xs lg:text-sm font-bold text-text-dark font-title line-clamp-1">
                       {doc.name}
                     </span>
-                    <span className="text-[10px] text-text-light font-medium uppercase tracking-tight">
-                      PDF, JPG or PNG (Max 5MB)
+                    <span className="text-[9px] sm:text-[10px] text-text-light font-medium uppercase tracking-tight leading-tight block">
+                      PDF, JPG or PNG <br /> (Max 5MB)
                     </span>
                   </div>
 
                   {/* Browse Files Button */}
                   <button 
                     onClick={() => handleSimulatedUpload(doc.id)}
-                    className="w-full border border-slate-200 rounded-[8px] py-1.5 px-3 text-xs font-semibold text-text-dark bg-white hover:bg-slate-50 transition-colors flex items-center justify-center"
+                    className="w-full border border-primary rounded-[8px] py-2 px-3 text-xs font-bold text-primary bg-white hover:bg-slate-50 transition-colors flex items-center justify-center"
                   >
                     <FileIcon />
                     <span>Browse files</span>
