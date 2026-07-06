@@ -1,8 +1,29 @@
 import Image from "next/image";
+import { Metadata } from "next";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { PinIcon } from "../components/Icons";
+
+export const metadata: Metadata = {
+  title: "College Recommendations | DegreeFYD",
+  description: "Explore top-ranked online and distance universities tailored to your educational preferences, budget, and stream choices on DegreeFYD.",
+  alternates: {
+    canonical: "https://degreefyd.com/recommendations",
+  },
+  openGraph: {
+    title: "College Recommendations | DegreeFYD",
+    description: "Explore top-ranked online and distance universities tailored to your educational preferences, budget, and stream choices on DegreeFYD.",
+    url: "https://degreefyd.com/recommendations",
+    siteName: "DegreeFYD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "College Recommendations | DegreeFYD",
+    description: "Explore top-ranked online and distance universities tailored to your educational preferences, budget, and stream choices on DegreeFYD.",
+  },
+};
 
 const AlagappaLogo = () => (
   <div className="w-14 h-14 relative overflow-hidden rounded-md border border-slate-100 flex items-center justify-center bg-white">
@@ -106,9 +127,27 @@ const RECOMMENDATIONS_DATA: College[] = [
 ];
 
 export default function Recommendations() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Recommended Online Colleges",
+    "numberOfItems": RECOMMENDATIONS_DATA.length,
+    "itemListElement": RECOMMENDATIONS_DATA.map((college, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": college.name,
+      "description": `Online degree courses offered in ${college.location}. Ranked ${college.nirfRank}.`
+    }))
+  };
+
   return (
-    <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
-      <Header />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
+        <Header />
 
       <main className="flex flex-col lg:flex-row flex-1 py-10 px-4 lg:px-8 xl:px-12 gap-8 w-full">
         <Sidebar />
@@ -175,5 +214,6 @@ export default function Recommendations() {
 
       <Footer />
     </div>
+    </>
   );
 }

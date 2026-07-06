@@ -60,28 +60,28 @@ This project provides a comprehensive landing dashboard interface tailored for s
 
 ```text
 degreefyd-landing/
-├── public/                     # Static media assets (banners, icons, previews)
-│   ├── refer_banner.png
-│   ├── doc_preview.jpg
-│   ├── whatsapp_icon.png
-│   └── ...
-├── src/
-│   ├── app/
-│   │   ├── components/         # Shared UI components
-│   │   │   ├── Header.tsx      # Main navigation header
-│   │   │   ├── Sidebar.tsx     # Left-side navigation drawer
-│   │   │   ├── Footer.tsx      # Global page footer
-│   │   │   ├── Icons.tsx       # Standardized SVG icons
-│   │   │   ├── LogoutModal.tsx # Log out confirmation modal
-│   │   │   └── ...
-│   │   ├── recommendations/    # /recommendations page route
-│   │   ├── shortlists/         # /shortlists page route
-│   │   ├── talk-to-counselor/  # /talk-to-counselor page route
-│   │   ├── session-booked/     # /session-booked page route
-│   │   ├── refer-earn/         # /refer-earn page route
-│   │   ├── my-documents/       # /my-documents page route
-│   │   ├── layout.tsx          # HTML template layout
-│   │   └── page.tsx            # Main dashboard details view
+├── public/                 # Static media assets (banners, icons, previews)
+├── src/app/
+│   ├── components/         # Shared Layout & Client Components
+│   │   ├── Header.tsx      # Double-decker top navbar
+│   │   ├── Sidebar.tsx     # Left-side navigation drawer
+│   │   ├── Footer.tsx      # Global copyright bar
+│   │   ├── Icons.tsx       # Consolidated SVG component pool
+│   │   ├── LogoutModal.tsx # Logout confirmation popup
+│   │   ├── DashboardClient.tsx
+│   │   ├── CounselorDashboardClient.tsx
+│   │   ├── ReferEarnClient.tsx
+│   │   └── MyDocumentsClient.tsx
+│   ├── my-documents/       # Documents uploader page (SSR)
+│   ├── recommendations/    # College recommendations page (SSR)
+│   ├── refer-earn/         # Refer and earn sharing page (SSR)
+│   ├── session-booked/     # Session confirmed page (SSR)
+│   ├── shortlists/         # Shortlisted colleges page (SSR)
+│   ├── talk-to-counselor/  # Expert counselor booking page (SSR)
+│   ├── layout.tsx          # HTML template wrapper
+│   ├── page.tsx            # Profile dashboard details page (SSR)
+│   ├── sitemap.ts          # XML Sitemap generator (SEO)
+│   └── robots.ts           # Crawler controller file (SEO)
 ```
 
 ---

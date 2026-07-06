@@ -1,7 +1,28 @@
 import React from "react";
+import { Metadata } from "next";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
+
+export const metadata: Metadata = {
+  title: "Session Booked Successfully | DegreeFYD",
+  description: "Your free counseling session with our online education experts has been booked successfully.",
+  alternates: {
+    canonical: "https://degreefyd.com/session-booked",
+  },
+  openGraph: {
+    title: "Session Booked Successfully | DegreeFYD",
+    description: "Your free counseling session with our online education experts has been booked successfully.",
+    url: "https://degreefyd.com/session-booked",
+    siteName: "DegreeFYD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Session Booked Successfully | DegreeFYD",
+    description: "Your free counseling session with our online education experts has been booked successfully.",
+  },
+};
 
 // Reusable CounselorInfo component
 interface CounselorInfoProps {
@@ -117,9 +138,35 @@ const SessionCard = ({
 };
 
 export default function SessionBooked() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EventReservation",
+    "reservationNumber": "DF-SESSION-2026",
+    "reservationStatus": "https://schema.org/Confirmed",
+    "underName": {
+      "@type": "Person",
+      "name": "Kartikay Sharma"
+    },
+    "reservationFor": {
+      "@type": "Event",
+      "name": "Free Career & College Counseling Session",
+      "startDate": "2026-06-04T11:00:00Z",
+      "endDate": "2026-06-04T11:30:00Z",
+      "location": {
+        "@type": "VirtualLocation",
+        "name": "DegreeFYD Online Portal"
+      }
+    }
+  };
+
   return (
-    <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
-      <Header />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
+        <Header />
 
       <main className="flex flex-col lg:flex-row flex-1 py-10 px-4 lg:px-8 xl:px-12 gap-8 w-full">
         <Sidebar />
@@ -138,5 +185,6 @@ export default function SessionBooked() {
 
       <Footer />
     </div>
+    </>
   );
 }
