@@ -7,27 +7,15 @@ import Footer from "../components/Footer";
 
 // Local Custom Icons for Uploader
 const CloudUploadIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0b3a60" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-    <path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.3-2-2-3.6-4-3.9C17 3.4 13 1 9.5 2.5 6 4 4.5 8 5.5 11.5c-2.3.8-3.5 3.2-2.5 5.5s3.2 3.5 5.5 2.5h11c1.2 0 2.3-.5 3-1.5z" />
-    <polyline points="16 12 12 8 8 12" />
-    <line x1="12" y1="8" x2="12" y2="20" />
-  </svg>
+  <img src="/cloud_upload_icon.png" alt="Upload" className="w-6 h-6 object-contain inline" />
 );
 
 const FileIcon = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="inline mr-1">
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-    <polyline points="14 2 14 8 20 8" />
-    <line x1="16" y1="13" x2="8" y2="13" />
-    <line x1="16" y1="17" x2="8" y2="17" />
-  </svg>
+  <img src="/file_icon.png" alt="Browse" className="w-3.5 h-3.5 object-contain inline mr-1" />
 );
 
 const EditIconLocal = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="inline mr-1">
-    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-    <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-  </svg>
+  <img src="/edit_icon.png" alt="Change" className="w-3.5 h-3.5 object-contain inline mr-1" />
 );
 
 interface DocItem {
