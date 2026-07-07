@@ -27,14 +27,14 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden lg:flex flex-col lg:fixed lg:top-[125px] lg:left-[calc(max(0px,(100vw-1440px)/2)+32px)] xl:left-[calc(max(0px,(100vw-1440px)/2)+48px)] w-[211px] h-[552px] justify-between items-start bg-white border border-[#CFD8DE] rounded-[8px] py-4 px-0 shadow-premium z-30 flex-shrink-0">
-      <nav className="flex flex-col gap-1 w-full">
+      <nav className="flex flex-col gap-1.5 w-full">
         {/* Profile Details link */}
         <Link 
           href="/" 
-          className={`flex items-center gap-3 py-2.5 px-4 mx-4 rounded-lg font-medium text-[14px] cursor-pointer transition-all ${
+          className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isProfileActive 
-              ? "text-primary bg-primary-light" 
-              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+              ? "text-primary bg-primary-light border-primary" 
+              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -46,10 +46,10 @@ export default function Sidebar() {
         {/* Recommendations link */}
         <Link 
           href="/recommendations" 
-          className={`flex items-center gap-3 py-2.5 px-4 mx-4 rounded-lg font-medium text-[14px] cursor-pointer transition-all ${
+          className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isRecommendationsActive 
-              ? "text-primary bg-primary-light" 
-              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+              ? "text-primary bg-primary-light border-primary" 
+              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -61,10 +61,10 @@ export default function Sidebar() {
         {/* Shortlists link */}
         <Link 
           href="/shortlists" 
-          className={`flex items-center gap-3 py-2.5 px-4 mx-4 rounded-lg font-medium text-[14px] cursor-pointer transition-all ${
+          className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isShortlistsActive 
-              ? "text-primary bg-primary-light" 
-              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+              ? "text-primary bg-primary-light border-primary" 
+              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -76,10 +76,10 @@ export default function Sidebar() {
         {/* Talk to Counselor link */}
         <Link 
           href="/talk-to-counselor" 
-          className={`flex items-center gap-3 py-2.5 px-4 mx-4 rounded-lg font-medium text-[14px] cursor-pointer transition-all ${
+          className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isCounselorActive 
-              ? "text-primary bg-primary-light" 
-              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+              ? "text-primary bg-primary-light border-primary" 
+              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -91,10 +91,10 @@ export default function Sidebar() {
         {/* My Documents link */}
         <Link 
           href="/my-documents" 
-          className={`flex items-center gap-3 py-2.5 px-4 mx-4 rounded-lg font-medium text-[14px] cursor-pointer transition-all ${
+          className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isDocumentsActive 
-              ? "text-primary bg-primary-light" 
-              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+              ? "text-primary bg-primary-light border-primary" 
+              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -106,10 +106,10 @@ export default function Sidebar() {
         {/* Refer & Earn link */}
         <Link 
           href="/refer-earn" 
-          className={`flex items-center gap-3 py-2.5 px-4 mx-4 rounded-lg font-medium text-[14px] cursor-pointer transition-all ${
+          className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isReferEarnActive 
-              ? "text-primary bg-primary-light" 
-              : "text-text-body hover:bg-slate-50 hover:text-text-dark group"
+              ? "text-primary bg-primary-light border-primary" 
+              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
