@@ -47,7 +47,7 @@ export default function DashboardClient() {
             <span className="text-sm font-semibold text-text-dark break-words">{profile.fullName}</span>
           </div>
           <div className="flex flex-col gap-1.5">
-            <span className="text-[13px] font-medium text-text-light">Parent's Phone</span>
+            <span className="text-[13px] font-medium text-text-light">Parent&apos; Phone</span>
             <span className="text-sm font-semibold text-text-dark break-words">{profile.parentPhone}</span>
           </div>
           <div className="flex flex-col gap-1.5">

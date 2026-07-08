@@ -20,10 +20,15 @@ const SmallChevronDown = () => (
   </svg>
 );
 
-export default function DegreeSearchDropdown() {
-  const [query, setQuery] = useState("");
+export default function DegreeSearchDropdown({ value = "", onSelect, placeholder = "Search degree" }) {
+  const [query, setQuery] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
+
+  // Keep state in sync with external value changes
+  useEffect(() => {
+    setQuery(value);
+  }, [value]);
 
   // Close dropdown when clicking outside the component
   useEffect(() => {
@@ -46,6 +51,9 @@ export default function DegreeSearchDropdown() {
   const handleOptionClick = (degree) => {
     setQuery(degree);
     setIsOpen(false);
+    if (onSelect) {
+      onSelect(degree);
+    }
   };
 
   return (
@@ -54,7 +62,7 @@ export default function DegreeSearchDropdown() {
       <div className="relative flex items-center">
         <input
           type="text"
-          placeholder="Search degree"
+          placeholder={placeholder}
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
