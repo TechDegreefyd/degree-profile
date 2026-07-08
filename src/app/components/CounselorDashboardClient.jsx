@@ -4,7 +4,23 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import BookSessionModal from "./BookSessionModal";
 import SuccessPopup from "./SuccessPopup";
-import { StarIcon, VerifiedIcon, CalendarIcon } from "./Icons";
+import { CalendarIcon } from "./Icons";
+
+function VerifiedCheckIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="7" viewBox="0 0 9 7" fill="none">
+      <path d="M7.41667 0.75L2.83333 5.33333L0.75 3.25" stroke="#007B2D" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function StarIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13" fill="none">
+      <path d="M6.66667 0L8.72667 4.17333L13.3333 4.84667L10 8.09333L10.7867 12.68L6.66667 10.5133L2.54667 12.68L3.33333 8.09333L0 4.84667L4.60667 4.17333L6.66667 0Z" fill="#EAB308"/>
+    </svg>
+  );
+}
 
 
 const COUNSELORS_DATA = [
@@ -128,56 +144,41 @@ export default function CounselorDashboardClient() {
           {COUNSELORS_DATA.map((counselor) => (
             <div 
               key={counselor.id}
-              className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-3 w-[260px] sm:w-[189.8px] lg:w-full h-fit hover:border-slate-400 transition-all flex flex-col items-center gap-3 flex-shrink-0 snap-center"
+              className="w-[189.8px] p-3 flex flex-col items-center gap-3 border border-[#CFD8DE] rounded-lg bg-white flex-shrink-0 snap-center"
             >
-              {/* Circular Profile Photo Centered */}
-              <div className="w-16 h-16 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center flex-shrink-0 shadow-inner bg-slate-100 relative">
-                <img 
-                  src={counselor.imageUrl} 
-                  alt={counselor.name} 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Name and Verified Check */}
-              <div className="flex items-center justify-center gap-1.5 text-center">
-                <span className="text-sm font-bold text-text-dark font-title truncate max-w-[130px]">
-                  {counselor.name}
+              <img src={counselor.imageUrl} alt={counselor.name} className="w-16 h-16 rounded-full object-cover" />
+              
+              <div className="flex items-center gap-1">
+                <span className="font-semibold text-sm text-text-dark">{counselor.name}</span>
+                <span className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <VerifiedCheckIcon />
                 </span>
-                <VerifiedIcon />
               </div>
-
-              {/* Subtext: Languages */}
-              <p className="text-xs text-text-light text-center leading-snug">
-                Speaks {counselor.languages}
-              </p>
-
-              {/* Stats Row */}
-              <div className="flex items-center w-full border-t border-slate-100 pt-2.5 text-center">
-                <div className="flex-1 flex flex-col items-center">
-                  <span className="text-[11px] font-bold text-text-dark">{counselor.experienceText}</span>
-                  <span className="text-[10px] text-text-light">Experience</span>
+              
+              <span className="text-xs text-gray-500 text-center">Speaks {counselor.languages}</span>
+              
+              <div className="flex justify-between w-full text-xs">
+                <div className="flex flex-col items-start">
+                  <span className="font-medium text-text-dark">{counselor.experienceText}</span>
+                  <span className="text-gray-500">Experience</span>
                 </div>
-                <div className="w-px h-6 bg-slate-200" />
-                <div className="flex-1 flex flex-col items-center">
-                  <span className="text-[11px] font-bold text-text-dark flex items-center gap-0.5 justify-center">
+                <div className="flex flex-col items-end">
+                  <div className="flex items-center gap-1">
                     <StarIcon />
-                    <span>{counselor.ratingText}</span>
-                  </span>
-                  <span className="text-[10px] text-text-light">Ratings</span>
+                    <span className="font-medium text-text-dark">{counselor.ratingText}</span>
+                  </div>
+                  <span className="text-gray-500">Ratings</span>
                 </div>
               </div>
-
-              {/* Book Free Session Button */}
-              <button 
+              
+              <button
                 onClick={() => {
                   setSelectedCounselor(counselor);
                   setIsModalOpen(true);
                 }}
-                className="w-full bg-primary hover:bg-primary-dark text-white font-bold text-xs py-2.5 px-2 rounded-lg transition-colors mt-auto flex items-center justify-center gap-1"
+                className="w-full bg-sky-950 hover:bg-sky-900 text-white text-sm font-medium py-2 rounded-lg transition-colors flex items-center justify-center text-center"
               >
-                <CalendarIcon />
-                <span>Book a Free Session</span>
+                Book Free Session
               </button>
             </div>
           ))}
