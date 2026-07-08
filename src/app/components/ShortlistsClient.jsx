@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import { PinIcon } from "./Icons";
 import { LOGO_COMPONENTS } from "./CollegeLogos";
-import DegreeSearchDropdown from "./DegreeSearchDropdown";
+import CourseDropdown from "./CourseDropdown";
 
 const DEFAULT_RECOMMENDATIONS = [
   {
@@ -146,7 +146,7 @@ export default function ShortlistsClient() {
                 return (
                   <div 
                     key={college.id} 
-                    className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-4 w-full sm:w-[327px] h-[229px] hover:border-slate-400 transition-all flex flex-col items-start justify-between gap-3 relative shadow-sm"
+                    className="flex flex-col items-start p-4 bg-[#FFF] border border-[#CFD8DE] rounded-[8px] w-full sm:w-[327px] h-[229px] relative hover:border-slate-400 transition-all shadow-sm"
                   >
                     {/* Bookmark/Save Active Icon in Top Right */}
                     <button 
@@ -157,39 +157,40 @@ export default function ShortlistsClient() {
                       <BookmarkIconFilled />
                     </button>
 
-                    <div className="w-full flex flex-col gap-2">
-                      {/* Top Row: Logo & Rank Badge / Location */}
-                      <div className="flex items-center gap-3 w-full pr-6">
-                        <div className="w-14 h-14 flex-shrink-0">
-                          {LogoComponent && <LogoComponent />}
-                        </div>
-                        <div className="flex flex-col items-start gap-1">
-                          {/* Rank Badge */}
-                          <span className="bg-[#e6fcf5] text-green-600 text-[11px] font-bold py-0.5 px-2.5 rounded-full border border-green-100">
-                            {college.nirfRank}
-                          </span>
-                          {/* Location */}
-                          <div className="flex items-center gap-1 text-[14px] text-[#717171] font-normal leading-normal overflow-hidden text-ellipsis whitespace-nowrap">
-                            <span className="text-slate-400"><PinIcon /></span>
-                            <span className="truncate max-w-[150px]">{college.location}</span>
-                          </div>
+                    {/* Top Row: Logo & Rank Badge / Location with 12px gap */}
+                    <div className="flex items-center gap-3 w-full pr-6">
+                      <div className="w-14 h-14 flex-shrink-0">
+                        {LogoComponent && <LogoComponent />}
+                      </div>
+                      <div className="flex flex-col items-start gap-1">
+                        {/* Rank Badge */}
+                        <span className="bg-[#e6fcf5] text-green-600 text-[11px] font-bold py-0.5 px-2.5 rounded-full border border-green-100">
+                          {college.nirfRank}
+                        </span>
+                        {/* Location */}
+                        <div className="flex items-center gap-1 text-[14px] text-[#717171] font-normal leading-normal overflow-hidden text-ellipsis whitespace-nowrap">
+                          <span className="text-slate-400"><PinIcon /></span>
+                          <span className="truncate max-w-[150px]">{college.location}</span>
                         </div>
                       </div>
-
-                      {/* College Name */}
-                      <h3 className="text-[15px] font-bold text-text-dark font-title leading-snug line-clamp-1">
-                        {college.name}
-                      </h3>
                     </div>
 
-                    {/* Degree Search Dropdown Component Pre-filled with Selected Course */}
-                    <DegreeSearchDropdown 
-                      value={college.selectedCourse || ""}
-                      onSelect={(degree) => handleUpdateCourse(college, degree)}
-                    />
+                    {/* College Name - 12px gap from Row 1 */}
+                    <h3 className="text-[15px] font-bold text-text-dark font-title leading-snug line-clamp-1 mt-3">
+                      {college.name}
+                    </h3>
 
-                    {/* Continue Application Button */}
-                    <button className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2.5 rounded-lg text-xs lg:text-sm transition-colors text-center shadow-sm">
+                    {/* Searchable nested course dropdown - 12px gap from Name */}
+                    <div className="w-full mt-3">
+                      <CourseDropdown 
+                        collegeId={college.id}
+                        value={college.selectedCourse || ""}
+                        onSelect={(degree) => handleUpdateCourse(college, degree)}
+                      />
+                    </div>
+
+                    {/* Continue Application Button - 12px gap from Dropdown */}
+                    <button className="w-full mt-3 bg-primary hover:bg-primary-dark text-white font-bold py-2.5 rounded-lg text-xs lg:text-sm transition-colors text-center shadow-sm">
                       Continue application
                     </button>
                   </div>

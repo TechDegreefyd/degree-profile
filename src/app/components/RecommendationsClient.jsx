@@ -6,7 +6,13 @@ import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import { PinIcon } from "./Icons";
 import { LOGO_COMPONENTS } from "./CollegeLogos";
-import DegreeSearchDropdown from "./DegreeSearchDropdown";
+import CourseDropdown from "./CourseDropdown";
+
+const BookmarkIconOutline = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0D3B59" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]">
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  </svg>
+);
 
 const DEFAULT_RECOMMENDATIONS = [
   {
@@ -130,11 +136,20 @@ export default function RecommendationsClient() {
                 return (
                   <div 
                     key={college.id} 
-                    className="flex flex-col items-start justify-between p-4 bg-[#FFF] border border-[#CFD8DE] rounded-[8px] w-full sm:w-[327px] h-[187px] gap-3 flex-1 overflow-hidden transition-all hover:border-slate-400"
+                    className="flex flex-col items-start justify-between p-4 bg-[#FFF] border border-[#CFD8DE] rounded-[8px] w-full sm:w-[327px] h-[187px] relative hover:border-slate-400 transition-all shadow-sm"
                   >
+                    {/* Outline bookmark button */}
+                    <button 
+                      onClick={() => handleSelectDegree(college, "Online MBA")}
+                      className="absolute top-4 right-4 text-primary hover:scale-110 transition-transform cursor-pointer" 
+                      aria-label="Shortlist college"
+                    >
+                      <BookmarkIconOutline />
+                    </button>
+
                     <div className="w-full">
-                      {/* Top Row: Logo & Rank Badge / Location */}
-                      <div className="flex items-center gap-3 w-full">
+                      {/* Top Row: Logo & Rank Badge / Location with 12px gap */}
+                      <div className="flex items-center gap-3 w-full pr-6">
                         <div className="w-14 h-14 flex-shrink-0">
                           {LogoComponent && <LogoComponent />}
                         </div>
@@ -146,20 +161,21 @@ export default function RecommendationsClient() {
                           {/* Location */}
                           <div className="flex items-center gap-1 text-[14px] text-[#717171] font-normal leading-normal overflow-hidden text-ellipsis whitespace-nowrap">
                             <span className="text-slate-400"><PinIcon /></span>
-                            <span className="truncate max-w-[160px]">{college.location}</span>
+                            <span className="truncate max-w-[150px]">{college.location}</span>
                           </div>
                         </div>
                       </div>
 
-                      {/* College Name */}
+                      {/* College Name - 12px gap from Row 1 */}
                       <h3 className="text-[15px] font-bold text-text-dark font-title leading-snug line-clamp-1 mt-3">
                         {college.name}
                       </h3>
                     </div>
 
-                    {/* Searchable Course Dropdown */}
-                    <div className="w-full relative">
-                      <DegreeSearchDropdown 
+                    {/* Searchable nested course dropdown - 12px gap from Name */}
+                    <div className="w-full mt-3">
+                      <CourseDropdown 
+                        collegeId={college.id}
                         placeholder="Search degree"
                         onSelect={(degree) => handleSelectDegree(college, degree)}
                       />
