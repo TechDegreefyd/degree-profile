@@ -159,19 +159,19 @@ export default function ShortlistsClient() {
 
                     <div className="w-full flex flex-col gap-2">
                       {/* Top Row: Logo & Rank Badge / Location */}
-                      <div className="flex items-start justify-between w-full pr-6">
+                      <div className="flex items-center gap-3 w-full pr-6">
                         <div className="w-14 h-14 flex-shrink-0">
                           {LogoComponent && <LogoComponent />}
                         </div>
-                        <div className="flex flex-col items-end gap-1.5">
+                        <div className="flex flex-col items-start gap-1">
                           {/* Rank Badge */}
-                          <span className="bg-[#e6fcf5] text-green-600 text-[11px] font-bold py-1 px-2.5 rounded-full border border-green-100">
+                          <span className="bg-[#e6fcf5] text-green-600 text-[11px] font-bold py-0.5 px-2.5 rounded-full border border-green-100">
                             {college.nirfRank}
                           </span>
                           {/* Location */}
-                          <div className="flex items-center gap-1 text-[13px] text-text-light">
+                          <div className="flex items-center gap-1 text-[14px] text-[#717171] font-normal leading-normal overflow-hidden text-ellipsis whitespace-nowrap">
                             <span className="text-slate-400"><PinIcon /></span>
-                            <span className="truncate max-w-[120px]">{college.location}</span>
+                            <span className="truncate max-w-[150px]">{college.location}</span>
                           </div>
                         </div>
                       </div>
