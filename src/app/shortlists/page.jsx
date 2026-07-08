@@ -1,11 +1,10 @@
 import Image from "next/image";
-import { Metadata } from "next";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { PinIcon } from "../components/Icons";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Shortlisted Colleges | DegreeFYD",
   description: "Review and manage your saved and shortlisted online university applications, status updates, and progress logs on DegreeFYD.",
   alternates: {
@@ -87,16 +86,8 @@ const ShardaLogo = () => (
   </div>
 );
 
-interface College {
-  id: string;
-  name: string;
-  nirfRank: string;
-  location: string;
-  logoComponent: React.ComponentType;
-  coursesShortlisted: number;
-}
 
-const SHORTLISTED_DATA: College[] = [
+const SHORTLISTED_DATA = [
   {
     id: "shortlist-1",
     name: "Alagappa University",
@@ -159,10 +150,10 @@ export default function ShortlistedColleges() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
+      <div className="flex flex-col min-h-screen bg-bg-page font-body pt-14 lg:pt-[110px]">
         <Header />
 
-      <main className="flex flex-col lg:flex-row flex-1 py-10 px-4 lg:px-8 xl:px-12 lg:pl-[267px] xl:pl-[283px] gap-8 w-full">
+      <main className="flex flex-col lg:flex-row flex-1 pt-6 pb-6 px-4 lg:px-8 xl:px-12 gap-8 w-full">
         <Sidebar />
 
         {/* Right Content Panel - Shortlisted Colleges */}

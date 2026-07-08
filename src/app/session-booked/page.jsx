@@ -1,10 +1,9 @@
 import React from "react";
-import { Metadata } from "next";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Session Booked Successfully | DegreeFYD",
   description: "Your free counseling session with our online education experts has been booked successfully.",
   alternates: {
@@ -25,14 +24,8 @@ export const metadata: Metadata = {
 };
 
 // Reusable CounselorInfo component
-interface CounselorInfoProps {
-  name: string;
-  role: string;
-  imageUrl: string;
-  statusText: string;
-}
 
-const CounselorInfo = ({ name, role, imageUrl, statusText }: CounselorInfoProps) => {
+const CounselorInfo = ({name, role, imageUrl, statusText }) => {
   return (
     <div className="w-full border border-slate-200 rounded-lg p-4 flex items-center justify-between bg-white">
       <div className="flex items-center gap-4">
@@ -64,12 +57,8 @@ const CounselorInfo = ({ name, role, imageUrl, statusText }: CounselorInfoProps)
 };
 
 // Reusable SessionDetails Row Component
-interface SessionDetailsProps {
-  label: string;
-  value: string;
-}
 
-const SessionDetailsRow = ({ label, value }: SessionDetailsProps) => {
+const SessionDetailsRow = ({ label, value }) => {
   return (
     <div className="w-full flex items-center justify-between text-sm py-1">
       <span className="text-text-light font-medium">{label}</span>
@@ -79,21 +68,13 @@ const SessionDetailsRow = ({ label, value }: SessionDetailsProps) => {
 };
 
 // Main SessionCard containing top row, sub-card, details, and action buttons
-interface SessionCardProps {
-  counselorName: string;
-  counselorRole: string;
-  counselorImageUrl: string;
-  dateText: string;
-  timeText: string;
-}
 
 const SessionCard = ({ 
   counselorName, 
   counselorRole, 
   counselorImageUrl, 
   dateText, 
-  timeText 
-}: SessionCardProps) => {
+  timeText}) => {
   return (
     <div className="flex flex-col items-center gap-6 p-4 w-full xl:w-[1013px] border border-[#CFD8DE] bg-white rounded-[8px] shadow-sm">
       
@@ -165,10 +146,10 @@ export default function SessionBooked() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
+      <div className="flex flex-col min-h-screen bg-bg-page font-body pt-14 lg:pt-[110px]">
         <Header />
 
-      <main className="flex flex-col lg:flex-row flex-1 py-10 px-4 lg:px-8 xl:px-12 lg:pl-[267px] xl:pl-[283px] gap-8 w-full">
+      <main className="flex flex-col lg:flex-row flex-1 pt-6 pb-6 px-4 lg:px-8 xl:px-12 gap-8 w-full">
         <Sidebar />
 
         {/* Right Content Panel - Your Session is Booked! */}

@@ -1,10 +1,9 @@
-import { Metadata } from "next";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import CounselorDashboardClient from "../components/CounselorDashboardClient";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Book Free Counseling Session | DegreeFYD",
   description: "Schedule a live video counseling session with our expert career advisors. Find the best online programs, compare tuition budgets, and verify university degrees.",
   alternates: {
@@ -44,10 +43,10 @@ export default function TalkToCounselor() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="flex flex-col min-h-screen lg:min-h-[1110px] max-w-[1440px] mx-auto bg-bg-page font-body shadow-sm">
+      <div className="flex flex-col min-h-screen bg-bg-page font-body pt-14 lg:pt-[110px]">
         <Header />
 
-        <main className="flex flex-col lg:flex-row flex-1 py-10 px-4 lg:px-8 xl:px-12 lg:pl-[267px] xl:pl-[283px] gap-8 w-full">
+        <main className="flex flex-col lg:flex-row flex-1 pt-6 pb-6 px-4 lg:px-8 xl:px-12 gap-8 w-full">
           <Sidebar />
           <CounselorDashboardClient />
         </main>
