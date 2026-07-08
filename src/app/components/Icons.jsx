@@ -57,9 +57,8 @@ export const SearchIcon = () => (
 );
 
 export const UserIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
+  <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+    <path d="M9.95833 12.625V11.2917C9.95833 10.5844 9.67738 9.90615 9.17728 9.40605C8.67719 8.90595 7.99891 8.625 7.29167 8.625H3.29167C2.58442 8.625 1.90615 8.90595 1.40605 9.40605C0.905952 9.90615 0.625 10.5844 0.625 11.2917V12.625M9.95833 5.95833L11.2917 7.29167L13.9583 4.625M7.95833 3.29167C7.95833 4.76443 6.76443 5.95833 5.29167 5.95833C3.81891 5.95833 2.625 4.76443 2.625 3.29167C2.625 1.81891 3.81891 0.625 5.29167 0.625C6.76443 0.625 7.95833 1.81891 7.95833 3.29167Z" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
