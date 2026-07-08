@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import BrowseIcon from "./BrowseIcon";
 
 // Local Custom Icons for Uploader
 const CloudUploadIcon = () => (
@@ -36,10 +37,30 @@ function ChangeButton({ onClick }) {
 }
 
 function DocumentThumbnail({ preview, label = "Preview" }) {
+  const [showPreview, setShowPreview] = useState(false);
+  const timerRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    timerRef.current = setTimeout(() => setShowPreview(true), 500);
+  };
+
+  const handleMouseLeave = () => {
+    clearTimeout(timerRef.current);
+    setShowPreview(false);
+  };
+
   return (
-    <div className="relative w-full h-[140px] rounded-md overflow-hidden group cursor-pointer border border-slate-100 bg-slate-50 flex items-center justify-center">
-      <img src={preview} alt="Document preview" className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+    <div
+      className="relative w-full h-[140px] rounded-md overflow-hidden cursor-pointer"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <img src={preview} alt="Document preview" className="w-full h-full object-cover rounded-md border" />
+      <div
+        className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${
+          showPreview ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
         <span className="text-white text-base font-semibold text-center px-2">{label}</span>
       </div>
     </div>
@@ -145,7 +166,7 @@ export default function MyDocumentsClient() {
                 onClick={() => handleSimulatedUpload(doc.id)}
                 className="w-full border border-primary rounded-[8px] py-2 px-3 text-xs font-bold text-primary bg-white hover:bg-slate-50 transition-colors flex items-center justify-center"
               >
-                <FileIcon />
+                <BrowseIcon />
                 <span>Browse files</span>
               </button>
             </div>
