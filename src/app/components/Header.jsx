@@ -39,7 +39,7 @@ const BrandLogo = () => (
       src="/logo.png" 
       alt="DegreeFYD Logo" 
       width={140} 
-      height={35} 
+      height={40} 
       priority
       style={{ objectFit: "contain", width: "140px", height: "auto" }}
     />
