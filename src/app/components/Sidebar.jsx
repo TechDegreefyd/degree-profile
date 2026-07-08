@@ -34,7 +34,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isProfileActive 
               ? "text-primary bg-primary-light border-primary" 
-              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
+              : "text-text-body border-transparent hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -49,7 +49,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isRecommendationsActive 
               ? "text-primary bg-primary-light border-primary" 
-              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
+              : "text-text-body border-transparent hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -64,7 +64,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isShortlistsActive 
               ? "text-primary bg-primary-light border-primary" 
-              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
+              : "text-text-body border-transparent hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -79,7 +79,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isCounselorActive 
               ? "text-primary bg-primary-light border-primary" 
-              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
+              : "text-text-body border-transparent hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -94,7 +94,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isDocumentsActive 
               ? "text-primary bg-primary-light border-primary" 
-              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
+              : "text-text-body border-transparent hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
@@ -109,7 +109,7 @@ export default function Sidebar() {
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isReferEarnActive 
               ? "text-primary bg-primary-light border-primary" 
-              : "text-text-body border-transparent hover:bg-primary-light hover:border-primary hover:text-primary"
+              : "text-text-body border-transparent hover:border-primary hover:text-primary"
           }`}
         >
           <div className="flex items-center justify-center">
