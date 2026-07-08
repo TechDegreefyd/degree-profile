@@ -47,7 +47,7 @@ const BrandLogo = () => (
 );
 
 
-export default function Header({ profileName = "Kartikay Sharma" }) {
+export default function Header({ profileName = "aditya shah" }) {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
