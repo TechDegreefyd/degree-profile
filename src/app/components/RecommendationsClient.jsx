@@ -118,7 +118,7 @@ export default function RecommendationsClient() {
         {/* Right Content Panel - Recommended Colleges */}
         <section className="flex-1 flex flex-col gap-6">
           <div className="flex flex-col">
-            <h1 className="text-2xl font-bold text-text-dark font-title mt-2">Recommended colleges</h1>
+            <h1 className="text-[20px] font-semibold text-[#121212] font-body leading-normal mt-2">Recommended colleges</h1>
             <p className="text-[13px] text-text-light mt-1">Select a course to automatically shortlist and save a college.</p>
           </div>
 
@@ -130,7 +130,7 @@ export default function RecommendationsClient() {
                 return (
                   <div 
                     key={college.id} 
-                    className="bg-[#FFF] border border-[#CFD8DE] rounded-[8px] p-4 w-full sm:w-[327px] h-[195px] hover:border-slate-400 transition-all flex flex-col items-start justify-between gap-3 shadow-sm"
+                    className="flex flex-col items-start justify-between p-4 bg-[#FFF] border border-[#CFD8DE] rounded-[8px] w-full sm:w-[327px] h-[187px] gap-3 flex-1 overflow-hidden transition-all hover:border-slate-400"
                   >
                     <div className="w-full">
                       {/* Top Row: Logo & Rank Badge / Location */}
@@ -144,7 +144,7 @@ export default function RecommendationsClient() {
                             {college.nirfRank}
                           </span>
                           {/* Location */}
-                          <div className="flex items-center gap-1 text-[13px] text-text-light">
+                          <div className="flex items-center gap-1 text-[14px] text-[#717171] font-normal leading-normal overflow-hidden text-ellipsis whitespace-nowrap">
                             <span className="text-slate-400"><PinIcon /></span>
                             <span className="truncate max-w-[130px]">{college.location}</span>
                           </div>
