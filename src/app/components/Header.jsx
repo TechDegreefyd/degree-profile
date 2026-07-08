@@ -141,6 +141,7 @@ export default function Header({ profileName = "Kartikay Sharma" }) {
             >
               <UserIcon />
             </button>
+          </div>
         </div>
       </div>
       <div className="flex lg:hidden items-center bg-primary py-3 px-5 text-white font-medium text-sm gap-2 cursor-pointer">
