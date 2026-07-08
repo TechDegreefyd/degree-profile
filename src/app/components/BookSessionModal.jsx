@@ -164,7 +164,11 @@ export default function BookSessionModal({ isOpen, onClose, counselor, onBooking
                   return (
                     <button
                       key={slot}
-                      onClick={() => setSelectedSlot(slot)}
+                      onClick={() => {
+                        setSelectedSlot(slot);
+                        const dateLabel = DATE_TABS.find(t => t.id === selectedDateId)?.label || "Today";
+                        onBookingSuccess(counselor.name, dateLabel, slot);
+                      }}
                       className={`rounded border border-[#199FD9] text-sm py-2 transition-all text-center ${
                         isSelected 
                           ? "bg-sky-50 font-semibold text-[#199FD9]" 
@@ -177,22 +181,6 @@ export default function BookSessionModal({ isOpen, onClose, counselor, onBooking
                 })}
               </div>
             </div>
-
-            {/* Booking submission panel */}
-            {selectedSlot && (
-              <div className="flex justify-end mt-4">
-                <button 
-                  onClick={() => {
-                    const dateLabel = DATE_TABS.find(t => t.id === selectedDateId)?.label || "Today";
-                    onBookingSuccess(counselor.name, dateLabel, selectedSlot);
-                    onClose();
-                  }}
-                  className="bg-primary hover:bg-primary-dark text-white font-bold py-2.5 px-8 rounded-lg shadow-md hover:shadow-lg transition-all text-sm"
-                >
-                  Confirm Booking
-                </button>
-              </div>
-            )}
 
           </div>
 

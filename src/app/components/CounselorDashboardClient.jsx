@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import BookSessionModal from "./BookSessionModal";
 import SuccessPopup from "./SuccessPopup";
@@ -114,6 +114,16 @@ export default function CounselorDashboardClient() {
   const [successDetails, setSuccessDetails] = useState({ title: "", description: "" });
   const [activeDot, setActiveDot] = useState(0);
 
+  const successTimerRef = useRef(null);
+  const navTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (successTimerRef.current) clearTimeout(successTimerRef.current);
+      if (navTimerRef.current) clearTimeout(navTimerRef.current);
+    };
+  }, []);
+
   const handleScroll = (e) => {
     const scrollLeft = e.currentTarget.scrollLeft;
     const cardWidth = 280; // card w-[260px] + gap [20px]
@@ -202,17 +212,34 @@ export default function CounselorDashboardClient() {
         onClose={() => setIsModalOpen(false)}
         counselor={selectedCounselor}
         onBookingSuccess={(counselorName, dateLabel, timeSlot) => {
+          setIsModalOpen(false);
           setSuccessDetails({
             title: "Session booked Successfully",
             description: `Your session with ${counselorName} has been booked for ${dateLabel} at ${timeSlot}.`
           });
           setIsSuccessOpen(true);
+
+          // Clear any existing timers
+          if (successTimerRef.current) clearTimeout(successTimerRef.current);
+          if (navTimerRef.current) clearTimeout(navTimerRef.current);
+
+          // Hide success popup after 1 second
+          successTimerRef.current = setTimeout(() => {
+            setIsSuccessOpen(false);
+          }, 1000);
+
+          // Navigate to session-booked page after 3 seconds (1s popup + 2s delay)
+          navTimerRef.current = setTimeout(() => {
+            router.push("/session-booked");
+          }, 3000);
         }}
       />
 
       <SuccessPopup 
         isOpen={isSuccessOpen}
         onClose={() => {
+          if (successTimerRef.current) clearTimeout(successTimerRef.current);
+          if (navTimerRef.current) clearTimeout(navTimerRef.current);
           setIsSuccessOpen(false);
           router.push("/session-booked");
         }}
