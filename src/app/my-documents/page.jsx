@@ -46,7 +46,7 @@ export default function MyDocuments() {
       <div className="flex flex-col min-h-screen bg-bg-page font-body pt-14 lg:pt-[110px]">
         <Header />
 
-        <main className="flex flex-col lg:flex-row flex-1 pt-10 pb-10 pr-4 pl-4 lg:pr-8 lg:pl-6 xl:pr-12 gap-6 w-full">
+        <main className="flex flex-col lg:flex-row flex-1 pt-6 pb-6 px-4 lg:px-8 xl:px-12 gap-8 w-full">
           <Sidebar />
           <MyDocumentsClient />
         </main>
