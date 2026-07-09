@@ -172,8 +172,8 @@ export default function RecommendationsClient() {
                       </h3>
                     </div>
 
-                    {/* Searchable nested course dropdown - 12px gap from Name */}
-                    <div className="w-full mt-3">
+                    {/* Searchable nested course dropdown - 8px gap from Name */}
+                    <div className="w-full mt-2">
                       <CourseDropdown 
                         collegeId={college.id}
                         placeholder="Search degree"
