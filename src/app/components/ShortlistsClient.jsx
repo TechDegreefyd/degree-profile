@@ -164,7 +164,7 @@ export default function ShortlistsClient() {
                       </div>
                       <div className="flex flex-col items-start gap-1">
                         {/* Rank Badge */}
-                        <span className="bg-[#e6fcf5] text-green-600 text-[11px] font-bold py-0.5 px-2.5 rounded-full border border-green-100">
+                        <span className="inline-flex items-center gap-1 pt-0.5 pr-1 pb-[3px] pl-1 rounded bg-[#007B2D]/10 text-green-700 text-xs font-medium">
                           {college.nirfRank}
                         </span>
                         {/* Location */}
