@@ -103,7 +103,7 @@ To run this project locally, ensure you have **Node.js** (v18+) installed.
     npm run dev
     ```
     The application will launch locally at:
-    👉 **`http://localhost:3000`**
+    👉 ** https://degree-profile.vercel.app/**
 
 4.  **Production Compilation Check**:
     ```bash
