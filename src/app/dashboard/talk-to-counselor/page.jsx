@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
-import CounselorDashboardClient from "../components/CounselorDashboardClient";
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+import Footer from "../../components/Footer";
+import CounselorDashboardClient from "../../components/CounselorDashboardClient";
 
 export const metadata = {
   title: "Book Free Counseling Session | DegreeFYD",

@@ -1,5 +1,5 @@
 import React from "react";
-import RecommendationsClient from "../components/RecommendationsClient";
+import RecommendationsClient from "../../components/RecommendationsClient";
 
 export const metadata = {
   title: "College Recommendations | DegreeFYD",

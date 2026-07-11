@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
-import MyDocumentsClient from "../components/MyDocumentsClient";
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+import Footer from "../../components/Footer";
+import MyDocumentsClient from "../../components/MyDocumentsClient";
 
 export const metadata = {
   title: "Upload Your Documents | DegreeFYD Verification",

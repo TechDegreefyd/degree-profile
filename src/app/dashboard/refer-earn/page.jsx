@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
-import ReferEarnClient from "../components/ReferEarnClient";
+import Header from "../../components/Header";
+import Sidebar from "../../components/Sidebar";
+import Footer from "../../components/Footer";
+import ReferEarnClient from "../../components/ReferEarnClient";
 
 export const metadata = {
   title: "Refer & Earn Program | DegreeFYD Rewards",

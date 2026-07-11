@@ -54,9 +54,10 @@ export default function Header({ profileName = "aditya shah" }) {
   const firstName = profileName.split(" ")[0];
 
   const handleLogoutConfirm = () => {
-    alert("Logged out successfully!");
+    document.cookie = "isLoggedIn=; path=/; max-age=0";
     setIsLogoutOpen(false);
     setIsDrawerOpen(false);
+    window.location.href = "/login";
   };
 
   return (
@@ -189,10 +190,10 @@ export default function Header({ profileName = "aditya shah" }) {
               {/* Navigation Links list */}
               <nav className="flex flex-col gap-1.5">
                 <Link 
-                  href="/" 
+                  href="/dashboard" 
                   onClick={() => setIsDrawerOpen(false)}
                   className={`flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-[14px] ${
-                    pathname === "/" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
+                  pathname === "/dashboard" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -203,10 +204,10 @@ export default function Header({ profileName = "aditya shah" }) {
                 </Link>
 
                 <Link 
-                  href="/recommendations" 
+                  href="/dashboard/recommendations" 
                   onClick={() => setIsDrawerOpen(false)}
                   className={`flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-[14px] ${
-                    pathname === "/recommendations" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
+                    pathname === "/dashboard/recommendations" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -217,10 +218,10 @@ export default function Header({ profileName = "aditya shah" }) {
                 </Link>
 
                 <Link 
-                  href="/shortlists" 
+                  href="/dashboard/shortlists" 
                   onClick={() => setIsDrawerOpen(false)}
                   className={`flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-[14px] ${
-                    pathname === "/shortlists" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
+                    pathname === "/dashboard/shortlists" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -231,10 +232,10 @@ export default function Header({ profileName = "aditya shah" }) {
                 </Link>
 
                 <Link 
-                  href="/talk-to-counselor" 
+                  href="/dashboard/talk-to-counselor" 
                   onClick={() => setIsDrawerOpen(false)}
                   className={`flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-[14px] ${
-                    pathname === "/talk-to-counselor" || pathname === "/session-booked" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
+                    pathname === "/dashboard/talk-to-counselor" || pathname === "/session-booked" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -245,10 +246,10 @@ export default function Header({ profileName = "aditya shah" }) {
                 </Link>
 
                 <Link 
-                  href="/my-documents" 
+                  href="/dashboard/my-documents" 
                   onClick={() => setIsDrawerOpen(false)}
                   className={`flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-[14px] ${
-                    pathname === "/my-documents" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
+                    pathname === "/dashboard/my-documents" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -259,10 +260,10 @@ export default function Header({ profileName = "aditya shah" }) {
                 </Link>
 
                 <Link 
-                  href="/refer-earn" 
+                  href="/dashboard/refer-earn" 
                   onClick={() => setIsDrawerOpen(false)}
                   className={`flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-[14px] ${
-                    pathname === "/refer-earn" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
+                    pathname === "/dashboard/refer-earn" ? "text-primary bg-primary-light" : "text-text-body hover:bg-slate-50"
                   }`}
                 >
                   <div className="flex items-center gap-3">

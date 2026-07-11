@@ -17,20 +17,21 @@ import {
 export default function Sidebar() {
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
   const pathname = usePathname();
-
-  const isProfileActive = pathname === "/";
-  const isRecommendationsActive = pathname === "/recommendations";
-  const isCounselorActive = pathname === "/talk-to-counselor" || pathname === "/session-booked";
-  const isShortlistsActive = pathname === "/shortlists";
-  const isReferEarnActive = pathname === "/refer-earn";
-  const isDocumentsActive = pathname === "/my-documents";
+ 
+  // After
+  const isProfileActive = pathname === "/dashboard";
+  const isRecommendationsActive = pathname === "/dashboard/recommendations";
+  const isCounselorActive = pathname === "/dashboard/talk-to-counselor" || pathname === "/dashboard/session-booked";
+  const isShortlistsActive = pathname === "/dashboard/shortlists";
+  const isReferEarnActive = pathname === "/dashboard/refer-earn";
+  const isDocumentsActive = pathname === "/dashboard/my-documents";
 
   return (
     <aside className="hidden lg:flex flex-col sticky top-[134px] h-[552px] w-[211px] justify-between items-start bg-white border border-[#CFD8DE] rounded-[8px] py-4 px-0 z-40 overflow-y-auto flex-shrink-0">
       <nav className="flex flex-col gap-1.5 w-full">
         {/* Profile Details link */}
         <Link 
-          href="/" 
+          href="/dashboard" 
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isProfileActive 
               ? "text-primary bg-primary-light border-primary" 
@@ -45,7 +46,7 @@ export default function Sidebar() {
 
         {/* Recommendations link */}
         <Link 
-          href="/recommendations" 
+          href="/dashboard/recommendations" 
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isRecommendationsActive 
               ? "text-primary bg-primary-light border-primary" 
@@ -60,7 +61,7 @@ export default function Sidebar() {
 
         {/* Shortlists link */}
         <Link 
-          href="/shortlists" 
+          href="/dashboard/shortlists" 
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isShortlistsActive 
               ? "text-primary bg-primary-light border-primary" 
@@ -75,7 +76,7 @@ export default function Sidebar() {
 
         {/* Talk to Counselor link */}
         <Link 
-          href="/talk-to-counselor" 
+          href="/dashboard/talk-to-counselor" 
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isCounselorActive 
               ? "text-primary bg-primary-light border-primary" 
@@ -90,7 +91,7 @@ export default function Sidebar() {
 
         {/* My Documents link */}
         <Link 
-          href="/my-documents" 
+          href="/dashboard/my-documents" 
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isDocumentsActive 
               ? "text-primary bg-primary-light border-primary" 
@@ -105,7 +106,7 @@ export default function Sidebar() {
 
         {/* Refer & Earn link */}
         <Link 
-          href="/refer-earn" 
+          href="/dashboard/refer-earn" 
           className={`flex items-center gap-2 py-2 pl-[13px] pr-4 w-full border-l-[3px] font-medium text-[14px] cursor-pointer transition-all duration-200 ${
             isReferEarnActive 
               ? "text-primary bg-primary-light border-primary" 
@@ -134,12 +135,13 @@ export default function Sidebar() {
       </div>
 
       <LogoutModal 
-        isOpen={isLogoutOpen} 
-        onClose={() => setIsLogoutOpen(false)} 
-        onConfirm={() => {
-          alert("Logged out successfully!");
-          setIsLogoutOpen(false);
-        }}
+       isOpen={isLogoutOpen} 
+       onClose={() => setIsLogoutOpen(false)} 
+       onConfirm={() => {
+       document.cookie = "isLoggedIn=; path=/; max-age=0";
+       setIsLogoutOpen(false);
+       window.location.href = "/login";
+      }}
       />
     </aside>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import ShortlistsClient from "../components/ShortlistsClient";
+import ShortlistsClient from "../../components/ShortlistsClient";
 
 export const metadata = {
   title: "Shortlisted Colleges | DegreeFYD",
