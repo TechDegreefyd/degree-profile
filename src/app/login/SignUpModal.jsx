@@ -1,6 +1,15 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+function isValidIndianNumber(number) {
+  const regex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+  return regex.test(number.trim());
+}
+ function isValidEmail(email) {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email.trim());
+}
+
 
 export default function SignUpModal({ onClose, onSignInClick, onLoginSuccess }) {
   const [fullName, setFullName] = useState('');
@@ -24,10 +33,15 @@ export default function SignUpModal({ onClose, onSignInClick, onLoginSuccess }) 
   const handleSendOtp = (e) => {
     e.preventDefault();
     if (fullName.trim() !== '' && email.trim() !== '' && phone.trim() !== '') {
+      if(isValidIndianNumber(phone)&& isValidEmail(email) ){
       setIsOtpSent(true);
       setTimer(29);
       setOtp(['', '', '', '']);
       setHasError(false);
+      }
+      else{
+        setHasError
+      }
     }
   };
 
@@ -172,6 +186,7 @@ export default function SignUpModal({ onClose, onSignInClick, onLoginSuccess }) 
 
                 <button
                   onClick={handleSendOtp}
+                  
                   className="flex w-[150px] h-[44px] min-h-[44px] p-[12px_16px] justify-center items-center gap-[8px] bg-[#0D3B59] hover:bg-[#092c42] text-white rounded-[8px] font-semibold text-[15px] transition-colors mx-auto mt-[8px]"
                 >
                   Send OTP

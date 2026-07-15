@@ -7,7 +7,7 @@ export const metadata = {
   title: "Session Booked Successfully | DegreeFYD",
   description: "Your free counseling session with our online education experts has been booked successfully.",
   alternates: {
-    canonical: "https://degreefyd.com/session-booked",
+    canonical: "https://degreefyd.com/dashboard/session-booked",
   },
   openGraph: {
     title: "Session Booked Successfully | DegreeFYD",

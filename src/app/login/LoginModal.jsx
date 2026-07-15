@@ -3,6 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+// --- Validation helpers ---
+function isValidIndianNumber(number) {
+  const regex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+  return regex.test(number.trim());
+}
+
+function isValidEmail(email) {
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email.trim());
+}
+
 export default function LoginModal({ onClose, onSignUpClick, onLoginSuccess }) {
   const [phone, setPhone] = useState('');
   const [authMethod, setAuthMethod] = useState('phone');
@@ -10,6 +21,7 @@ export default function LoginModal({ onClose, onSignUpClick, onLoginSuccess }) {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [timer, setTimer] = useState(29);
   const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     let interval;
@@ -23,18 +35,49 @@ export default function LoginModal({ onClose, onSignUpClick, onLoginSuccess }) {
 
   const handleSendOtp = (e) => {
     e.preventDefault();
-    if (phone.trim() !== '') {
+
+    if (phone.trim() === '') {
+      setHasError(true);
+      setErrorMessage(
+        authMethod === 'phone' ? 'Please enter a phone number' : 'Please enter an email address'
+      );
+      return;
+    }
+
+    // Validate based on the currently selected auth method
+    const isValid =
+      authMethod === 'phone' ? isValidIndianNumber(phone) : isValidEmail(phone);
+
+    if (isValid) {
       setIsOtpSent(true);
       setTimer(29);
       setOtp(['', '', '', '']);
       setHasError(false);
+      setErrorMessage('');
+    } else {
+      setHasError(true);
+      setErrorMessage(
+        authMethod === 'phone'
+          ? 'Please enter a valid 10-digit Indian phone number'
+          : 'Please enter a valid email address'
+      );
     }
   };
 
   const handlePhoneChange = (e) => {
     const val = e.target.value;
-    const numericVal = val.replace(/[^0-9]/g, '').slice(0, 10);
-    setPhone(numericVal);
+    if (authMethod === 'phone') {
+      // Restrict to digits only, max 10, for phone entry
+      const numericVal = val.replace(/[^0-9]/g, '').slice(0, 10);
+      setPhone(numericVal);
+    } else {
+      // Free text for email
+      setPhone(val);
+    }
+    if (hasError) {
+      setHasError(false);
+      setErrorMessage('');
+    }
   };
 
   const handleOtpChange = (element, index) => {
@@ -64,7 +107,7 @@ export default function LoginModal({ onClose, onSignUpClick, onLoginSuccess }) {
       setHasError(true);
     } else {
       setHasError(false);
-      onLoginSuccess() ;
+      onLoginSuccess();
     }
   };
 
@@ -82,187 +125,196 @@ export default function LoginModal({ onClose, onSignUpClick, onLoginSuccess }) {
         </button>
 
         <div className="flex items-center justify-center mb-[8px] select-none">
-           <Image
-              src="/logo.png"
-              alt="DegreeFYD Logo"
-              width={140}
-              height={40}
-              priority
-              style={{ objectFit: "contain", width: "140px", height: "auto" }}
-              />
+          <Image
+            src="/logo.png"
+            alt="DegreeFYD Logo"
+            width={140}
+            height={40}
+            priority
+            style={{ objectFit: "contain", width: "140px", height: "auto" }}
+          />
         </div>
 
-          {!isOtpSent ? (
-            <>
-              <h2 className="text-[18px] font-semibold text-[#1a1a1a] text-center mb-[24px]">
-                Sign in to get started
-              </h2>
+        {!isOtpSent ? (
+          <>
+            <h2 className="text-[18px] font-semibold text-[#1a1a1a] text-center mb-[24px]">
+              Sign in to get started
+            </h2>
 
-              <div className="flex justify-start items-center gap-[24px] mb-[16px]">
-                <label className="flex items-center gap-2 cursor-pointer select-none">
-                  <input
-                    type="radio"
-                    name="authMethod"
-                    checked={authMethod === 'phone'}
-                    onChange={() => {
-                      setAuthMethod('phone');
-                      setPhone('');
-                    }}
-                    className="sr-only"
-                  />
-                  <div className={`w-[16px] h-[16px] rounded-full border flex items-center justify-center ${authMethod === 'phone' ? 'border-[#0D3B59]' : 'border-gray-300'}`}>
-                    {authMethod === 'phone' && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <circle cx="6" cy="6" r="6" fill="#0D3B59"/>
-                      </svg>
-                    )}
-                  </div>
-                  <span className={`text-[14px] ${authMethod === 'phone' ? 'font-medium text-[#0D3B59]' : 'text-[#6b7280]'}`}>Phone</span>
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer select-none">
-                  <input
-                    type="radio"
-                    name="authMethod"
-                    checked={authMethod === 'email'}
-                    onChange={() => {
-                      setAuthMethod('email');
-                      setPhone('');
-                    }}
-                    className="sr-only"
-                  />
-                  <div className={`w-[16px] h-[16px] rounded-full border flex items-center justify-center ${authMethod === 'email' ? 'border-[#0D3B59]' : 'border-gray-300'}`}>
-                    {authMethod === 'email' && (
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <circle cx="6" cy="6" r="6" fill="#0D3B59"/>
-                      </svg>
-                    )}
-                  </div>
-                  <span className={`text-[14px] ${authMethod === 'email' ? 'font-medium text-[#0D3B59]' : 'text-[#6b7280]'}`}>Email</span>
-                </label>
-              </div>
-
-              {authMethod === 'phone' ? (
-                <div className="flex items-center gap-[12px] p-[12px_16px] w-full border border-[#CFD8DE] rounded-[8px] bg-white focus-within:border-[#0D3B59] transition-colors mb-[16px]">
-                  <div className="flex items-center gap-2 select-none">
-                    <span className="flex flex-col justify-between w-5 h-3.5 border border-gray-100 overflow-hidden rounded-[1px] flex-shrink-0">
-                      <span className="h-[33%] bg-[#ff9933]"></span>
-                      <span className="h-[33%] bg-white flex items-center justify-center">
-                        <span className="w-1 h-1 rounded-full bg-blue-900"></span>
-                      </span>
-                      <span className="h-[33%] bg-[#128807]"></span>
-                    </span>
-                    <span className="text-[14px] font-medium text-gray-700">+91</span>
-                  </div>
-                  <div className="w-[1px] h-[20px] bg-[#CFD8DE] flex-shrink-0"></div>
-                  <input
-                    type="tel"
-                    placeholder="Enter phone number"
-                    value={phone}
-                    onChange={handlePhoneChange}
-                    className="flex-1 text-[14px] outline-none text-gray-800 placeholder-gray-400 bg-transparent font-sans"
-                  />
-                </div>
-              ) : (
-                <div className="flex items-center gap-[12px] p-[12px_16px] w-full border border-[#CFD8DE] rounded-[8px] bg-white focus-within:border-[#0D3B59] transition-colors mb-[16px]">
-                  <div className="flex items-center select-none flex-shrink-0">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 7.99961L12.824 12.5596C12.577 12.7144 12.2915 12.7964 12 12.7964C11.7085 12.7964 11.423 12.7144 11.176 12.5596L4 7.99961M5.6 5.59961H18.4C19.2837 5.59961 20 6.31595 20 7.19961V16.7996C20 17.6833 19.2837 18.3996 18.4 18.3996H5.6C4.71634 18.3996 4 17.6833 4 16.7996V7.19961C4 6.31595 4.71634 5.59961 5.6 5.59961Z" stroke="#121212" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <div className="flex justify-start items-center gap-[24px] mb-[16px]">
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                  type="radio"
+                  name="authMethod"
+                  checked={authMethod === 'phone'}
+                  onChange={() => {
+                    setAuthMethod('phone');
+                    setPhone('');
+                    setHasError(false);
+                    setErrorMessage('');
+                  }}
+                  className="sr-only"
+                />
+                <div className={`w-[16px] h-[16px] rounded-full border flex items-center justify-center ${authMethod === 'phone' ? 'border-[#0D3B59]' : 'border-gray-300'}`}>
+                  {authMethod === 'phone' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <circle cx="6" cy="6" r="6" fill="#0D3B59"/>
                     </svg>
-                  </div>
-                  <div className="w-[1px] h-[20px] bg-[#CFD8DE] flex-shrink-0"></div>
-                  <input
-                    type="email"
-                    placeholder="example27@gmail.com"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="flex-1 text-[14px] outline-none text-gray-800 placeholder-gray-400 bg-transparent font-sans"
-                  />
+                  )}
                 </div>
-              )}
-
-              <button
-                onClick={handleSendOtp}
-                className="flex w-[150px] h-[44px] min-h-[44px] p-[12px_16px] justify-center items-center gap-[8px] bg-[#0D3B59] hover:bg-[#092c42] text-white rounded-[8px] font-semibold text-[15px] transition-colors mx-auto mb-[20px]"
-              >
-                Send OTP
-              </button>
-
-              <div className="text-center text-[14px] select-none">
-                <span className="text-[#6b7280]">New to Degreefyd...? </span>
-                <span
-                  onClick={onSignUpClick}
-                  className="text-[#2563eb] font-semibold hover:underline cursor-pointer"
-                >
-                  Sign up
-                </span>
-              </div>
-            </>
-          ) : (
-            <>
-              <h2 className="text-[18px] font-normal text-[#121212] text-center leading-normal mb-[24px]">
-                Enter the 4 digit OTP sent to your {authMethod === 'phone' ? 'Phone number' : 'Email address'}
-              </h2>
-
-              <div className="flex justify-center gap-[16px] mb-[16px]">
-                {otp.map((data, index) => (
-                  <input
-                    key={index}
-                    type="text"
-                    maxLength="1"
-                    value={data}
-                    onChange={(e) => handleOtpChange(e.target, index)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
-                    onFocus={(e) => e.target.select()}
-                    className="w-[44px] h-[44px] aspect-square rounded-[8px] border border-[#0D3B59] bg-white text-center text-[18px] font-medium outline-none focus:border-[#0D3B59] focus:ring-1 focus:ring-[#0D3B59] text-gray-800"
-                  />
-                ))}
-              </div>
-
-              {hasError ? (
-                <p className="text-[16px] text-center text-[#C2413A] font-normal leading-normal mb-[16px]">
-                  Please enter the correct OTP
-                </p>
-              ) : (
-                <div className="h-[24px] mb-[16px]"></div>
-              )}
-
-              <button
-                onClick={handleVerifyOtp}
-                className="flex w-[150px] h-[44px] min-h-[44px] p-[12px_16px] justify-center items-center gap-[8px] bg-[#0D3B59] hover:bg-[#092c42] text-white rounded-[8px] font-semibold text-[15px] transition-colors mx-auto mb-[16px]"
-              >
-                Verify OTP
-              </button>
-
-              {timer > 0 ? (
-                <p className="text-[16px] text-center text-[#717171] font-normal leading-normal mb-[16px]">
-                  Resend otp in 00 : {timer < 10 ? '0' : ''}{timer}
-                </p>
-              ) : (
-                <div className="text-center mb-[16px]">
-                  <button
-                    onClick={() => {
-                      setTimer(29);
-                      setOtp(['', '', '', '']);
-                      setHasError(false);
-                    }}
-                    className="text-[16px] text-[#2563eb] hover:underline font-medium"
-                  >
-                    Resend OTP
-                  </button>
+                <span className={`text-[14px] ${authMethod === 'phone' ? 'font-medium text-[#0D3B59]' : 'text-[#6b7280]'}`}>Phone</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                  type="radio"
+                  name="authMethod"
+                  checked={authMethod === 'email'}
+                  onChange={() => {
+                    setAuthMethod('email');
+                    setPhone('');
+                    setHasError(false);
+                    setErrorMessage('');
+                  }}
+                  className="sr-only"
+                />
+                <div className={`w-[16px] h-[16px] rounded-full border flex items-center justify-center ${authMethod === 'email' ? 'border-[#0D3B59]' : 'border-gray-300'}`}>
+                  {authMethod === 'email' && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <circle cx="6" cy="6" r="6" fill="#0D3B59"/>
+                    </svg>
+                  )}
                 </div>
-              )}
+                <span className={`text-[14px] ${authMethod === 'email' ? 'font-medium text-[#0D3B59]' : 'text-[#6b7280]'}`}>Email</span>
+              </label>
+            </div>
 
-              <div className="text-center text-[14px]">
+            {authMethod === 'phone' ? (
+              <div className={`flex items-center gap-[12px] p-[12px_16px] w-full border rounded-[8px] bg-white focus-within:border-[#0D3B59] transition-colors ${hasError ? 'border-[#C2413A]' : 'border-[#CFD8DE]'}`}>
+                <div className="flex items-center gap-2 select-none">
+                  <span className="flex flex-col justify-between w-5 h-3.5 border border-gray-100 overflow-hidden rounded-[1px] flex-shrink-0">
+                    <span className="h-[33%] bg-[#ff9933]"></span>
+                    <span className="h-[33%] bg-white flex items-center justify-center">
+                      <span className="w-1 h-1 rounded-full bg-blue-900"></span>
+                    </span>
+                    <span className="h-[33%] bg-[#128807]"></span>
+                  </span>
+                  <span className="text-[14px] font-medium text-gray-700">+91</span>
+                </div>
+                <div className="w-[1px] h-[20px] bg-[#CFD8DE] flex-shrink-0"></div>
+                <input
+                  type="tel"
+                  placeholder="Enter phone number"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  className="flex-1 text-[14px] outline-none text-gray-800 placeholder-gray-400 bg-transparent font-sans"
+                />
+              </div>
+            ) : (
+              <div className={`flex items-center gap-[12px] p-[12px_16px] w-full border rounded-[8px] bg-white focus-within:border-[#0D3B59] transition-colors ${hasError ? 'border-[#C2413A]' : 'border-[#CFD8DE]'}`}>
+                <div className="flex items-center select-none flex-shrink-0">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 7.99961L12.824 12.5596C12.577 12.7144 12.2915 12.7964 12 12.7964C11.7085 12.7964 11.423 12.7144 11.176 12.5596L4 7.99961M5.6 5.59961H18.4C19.2837 5.59961 20 6.31595 20 7.19961V16.7996C20 17.6833 19.2837 18.3996 18.4 18.3996H5.6C4.71634 18.3996 4 17.6833 4 16.7996V7.19961C4 6.31595 4.71634 5.59961 5.6 5.59961Z" stroke="#121212" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div className="w-[1px] h-[20px] bg-[#CFD8DE] flex-shrink-0"></div>
+                <input
+                  type="email"
+                  placeholder="example27@gmail.com"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  className="flex-1 text-[14px] outline-none text-gray-800 placeholder-gray-400 bg-transparent font-sans"
+                />
+              </div>
+            )}
+
+            {hasError && errorMessage ? (
+              <p className="text-[13px] text-[#C2413A] mt-[6px] mb-[10px]">{errorMessage}</p>
+            ) : (
+              <div className="mb-[16px]"></div>
+            )}
+
+            <button
+              onClick={handleSendOtp}
+              className="flex w-[150px] h-[44px] min-h-[44px] p-[12px_16px] justify-center items-center gap-[8px] bg-[#0D3B59] hover:bg-[#092c42] text-white rounded-[8px] font-semibold text-[15px] transition-colors mx-auto mb-[20px]"
+            >
+              Send OTP
+            </button>
+
+            <div className="text-center text-[14px] select-none">
+              <span className="text-[#6b7280]">New to Degreefyd...? </span>
+              <span
+                onClick={onSignUpClick}
+                className="text-[#2563eb] font-semibold hover:underline cursor-pointer"
+              >
+                Sign up
+              </span>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 className="text-[18px] font-normal text-[#121212] text-center leading-normal mb-[24px]">
+              Enter the 4 digit OTP sent to your {authMethod === 'phone' ? 'Phone number' : 'Email address'}
+            </h2>
+
+            <div className="flex justify-center gap-[16px] mb-[16px]">
+              {otp.map((data, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  maxLength="1"
+                  value={data}
+                  onChange={(e) => handleOtpChange(e.target, index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                  onFocus={(e) => e.target.select()}
+                  className="w-[44px] h-[44px] aspect-square rounded-[8px] border border-[#0D3B59] bg-white text-center text-[18px] font-medium outline-none focus:border-[#0D3B59] focus:ring-1 focus:ring-[#0D3B59] text-gray-800"
+                />
+              ))}
+            </div>
+
+            {hasError ? (
+              <p className="text-[16px] text-center text-[#C2413A] font-normal leading-normal mb-[16px]">
+                Please enter the correct OTP
+              </p>
+            ) : (
+              <div className="h-[24px] mb-[16px]"></div>
+            )}
+
+            <button
+              onClick={handleVerifyOtp}
+              className="flex w-[150px] h-[44px] min-h-[44px] p-[12px_16px] justify-center items-center gap-[8px] bg-[#0D3B59] hover:bg-[#092c42] text-white rounded-[8px] font-semibold text-[15px] transition-colors mx-auto mb-[16px]"
+            >
+              Verify OTP
+            </button>
+
+            {timer > 0 ? (
+              <p className="text-[16px] text-center text-[#717171] font-normal leading-normal mb-[16px]">
+                Resend otp in 00 : {timer < 10 ? '0' : ''}{timer}
+              </p>
+            ) : (
+              <div className="text-center mb-[16px]">
                 <button
-                  onClick={() => setIsOtpSent(false)}
-                  className="text-gray-500 hover:text-gray-800 underline font-medium"
+                  onClick={() => {
+                    setTimer(29);
+                    setOtp(['', '', '', '']);
+                    setHasError(false);
+                  }}
+                  className="text-[16px] text-[#2563eb] hover:underline font-medium"
                 >
-                  Change {authMethod === 'phone' ? 'phone number' : 'email address'}
+                  Resend OTP
                 </button>
               </div>
-            </>
-          )}
-        </div>
+            )}
+
+            <div className="text-center text-[14px]">
+              <button
+                onClick={() => setIsOtpSent(false)}
+                className="text-gray-500 hover:text-gray-800 underline font-medium"
+              >
+                Change {authMethod === 'phone' ? 'phone number' : 'email address'}
+              </button>
+            </div>
+          </>
+        )}
 
         <div className="mt-auto flex justify-between items-start border-t border-gray-100 pt-6">
           <div className="flex flex-col items-center text-center max-w-[100px] flex-1">
@@ -277,13 +329,13 @@ export default function LoginModal({ onClose, onSignUpClick, onLoginSuccess }) {
           <div className="w-[1px] h-[40px] bg-gray-200 self-center"></div>
 
           <div className="flex flex-col items-center text-center max-w-[100px] flex-1">
-            <div className="flex p-[8px] w-[40px] h-[40px] items-center justify-center gap-[10px] rounded-[8px] bg-[#FDF4EC] mb-2 flex-shrink-0">
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[24px] h-[24px] flex-shrink-0 text-[#ED923D]">
-                <path d="M18.4682 10.1639C18.2625 10.3737 18.1473 10.6558 18.1473 10.9497C18.1473 11.2435 18.2625 11.5256 18.4682 11.7354L20.2642 13.5314C20.4741 13.7371 20.7562 13.8523 21.05 13.8523C21.3438 13.8523 21.6259 13.7371 21.8358 13.5314L26.0676 9.29957C26.6321 10.5469 26.803 11.9366 26.5576 13.2835C26.3121 14.6305 25.6621 15.8706 24.694 16.8387C23.7259 17.8068 22.4857 18.4569 21.1388 18.7023C19.7919 18.9477 18.4022 18.7768 17.1549 18.2123L9.3983 25.9689C8.95173 26.4155 8.34606 26.6663 7.71452 26.6663C7.08299 26.6663 6.47732 26.4155 6.03075 25.9689C5.58419 25.5223 5.33331 24.2851C5.33331 23.6536 5.58419 23.0479 6.03075 22.6014L13.7873 14.8448C13.2229 13.5975 13.052 12.2077 13.2974 10.8608C13.5428 9.51391 14.1929 8.27377 15.161 7.30567C16.1291 6.33758 17.3692 5.68751 18.7161 5.4421C20.063 5.19669 21.4528 5.36759 22.7001 5.93203L18.4682 10.1639Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <div className="flex p-[8px] w-[40px] h-[40px] items-center justify-center gap-[10px] rounded-[8px] bg-[#FDF4EC]   mb-2 flex-shrink-0">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+               <path d="M14.1349 5.8309C13.9292 6.04073 13.814 6.32284 13.814 6.61666C13.814 6.91048 13.9292 7.19259 14.1349 7.40242L15.9309 9.19844C16.1407 9.40412 16.4229 9.51932 16.7167 9.51932C17.0105 9.51932 17.2926 9.40412 17.5024 9.19844L21.7343 4.96656C22.2988 6.21389 22.4697 7.60361 22.2242 8.95053C21.9788 10.2974 21.3288 11.5376 20.3607 12.5057C19.3926 13.4738 18.1524 14.1238 16.8055 14.3693C15.4586 14.6147 14.0689 14.4438 12.8216 13.8793L5.06498 21.6359C4.61842 22.0825 4.01275 22.3333 3.38121 22.3333C2.74968 22.3333 2.144 22.0825 1.69744 21.6359C1.25088 21.1893 1 20.5837 1 19.9521C1 19.3206 1.25088 18.7149 1.69744 18.2684L9.45401 10.5118C8.88957 9.26446 8.71867 7.87473 8.96408 6.52782C9.20949 5.1809 9.85956 3.94076 10.8277 2.97266C11.7958 2.00457 13.0359 1.3545 14.3828 1.10909C15.7297 0.863679 17.1194 1.03458 18.3668 1.59902L14.1349 5.8309Z" stroke="#ED923D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+             </svg>
             </div>
             <span className="text-[12px] text-[#121212] font-normal leading-normal text-center select-none">Access to our tools & insights</span>
-          </div>
+         </div>
 
           <div className="w-[1px] h-[40px] bg-gray-200 self-center"></div>
 
